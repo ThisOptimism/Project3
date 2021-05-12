@@ -7,7 +7,8 @@ router.post('/signup', (req, res, next) => {
   // get username and password
   const {
     username,
-    password
+    password,
+    email
   } = req.body;
   // is the password at least 8 chars
   if (password.length < 8) {
@@ -41,7 +42,8 @@ router.post('/signup', (req, res, next) => {
         // create the user in the database
         User.create({
             username: username,
-            password: hash
+            password: hash,
+            email: email
           })
           .then(createdUser => {
             console.log(createdUser);
