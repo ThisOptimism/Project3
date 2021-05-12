@@ -1,12 +1,39 @@
-const { Schema, model } = require("mongoose");
+const {
+  Schema,
+  model
+} = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema({
   username: {
     type: String,
-    // unique: true -> Ideally, should be unique, but its up to you
+    unique: true
   },
   password: String,
+  email: {
+    type: String,
+    unique: true
+  },
+  profilePicture: String,
+  vocabLists: [{
+    type: Schema.Types.ObjectId,
+    ref: 'VocabList'
+  }],
+  favoriteText: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Text'
+  }],
+  alreadyRead: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Text'
+  }],
+  nativeLang: {
+    type: String,
+    enum: ['EN', 'GER', 'FR', 'ES']
+  },
+  targetLang: {
+    type: String,
+    enum: ['EN', 'GER', 'FR', 'ES']
+  }
 });
 
 const User = model("User", userSchema);
