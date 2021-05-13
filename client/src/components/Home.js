@@ -1,6 +1,8 @@
 import React from 'react'
+import translator from '../services/translate'
 
 export default function Home() {
+
   return (
     <main>
       <h1>Headline</h1>
