@@ -11,7 +11,6 @@ const userSchema = new Schema({
   password: String,
   email: {
     type: String,
-    unique: true
   },
   profilePicture: String,
   vocabLists: [{
@@ -28,11 +27,13 @@ const userSchema = new Schema({
   }],
   nativeLang: {
     type: String,
-    enum: ['EN', 'GER', 'FR', 'ES']
+    enum: ['EN', 'GER', 'FR', 'ES'],
+    default: 'EN'
   },
   targetLang: {
     type: String,
-    enum: ['EN', 'GER', 'FR', 'ES']
+    enum: ['EN', 'GER', 'FR', 'ES'],
+    default: 'EN'
   }
 });
 
