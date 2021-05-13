@@ -108,6 +108,8 @@ app.use(passport.session());
 const auth = require("./routes/auth");
 app.use("/api/auth", auth);
 
+const text = require("./routes/textList");
+app.use("/api/textList", text)
 
 
 
