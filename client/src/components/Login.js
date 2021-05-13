@@ -36,7 +36,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <main>
         <h2>Login</h2>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username: </label>
@@ -60,7 +60,7 @@ export default class Login extends Component {
             <h3>{this.state.message}</h3>
           )}
         </form>
-      </div>
+      </main>
     )
   }
 }
