@@ -29,10 +29,10 @@ export default class LibraryPage extends Component {
     console.log(sampleText);
     
     return (
-      <div>
+      <main>
         <h1>Library Page</h1>
       {this.state.mappedTexts}
-      </div>
+      </main>
     )
   }
 }

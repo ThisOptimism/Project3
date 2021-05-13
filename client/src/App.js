@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
+import Footer from './components/Footer';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -30,6 +31,7 @@ class App extends React.Component {
           <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
           <Route exact path='/library' render={ props => <LibraryPage setUser={ this.setUser } { ...props } /> } />
         </Switch>
+        <Footer />
       </>
     )
   }

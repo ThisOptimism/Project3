@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Dashboard() {
   return (
-    <div>
+    <main>
       <h1>Dasboard</h1>
-    </div>
+    </main>
   )
 }
