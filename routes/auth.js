@@ -101,7 +101,7 @@ router.post('/login', (req, res, next) => {
 
 // this checks if we have a logged in user -> returns this user as json or null
 router.get('/loggedin', (req, res) => {
-  console.log('this is the user from the session: ', req.user);
+  // console.log('this is the user from the session: ', req.user);
   // if we don't use passport but express session it would be: req.session.user
   res.json(req.user);
 })

@@ -6,12 +6,13 @@ class SideBar extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.word);
 
     return (
       <aside>
         <div className="translation">
-          <h3>{ this.props.wordToBeTranslated}</h3>
+
+          <h3>{ this.props.word }</h3>
           <p>definition</p>
         </div>
 
