@@ -10,30 +10,30 @@ export default function NavBar(props) {
   }
 
   return (
-    <div>
-      <h1>NavBar</h1>
+    <header>
+      <h1>WordFish</h1>
       <ul>
         { props.user ? (
-          <>
+          <div className="menu">
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <Link to='/' onClick={ () => handleLogout() }>Logout</Link>
             </li>
-          </>
+          </div>
         ) : (
-          <>
+          <div className="menu">
             <li>
               <Link to="/signup">Signup</Link>
             </li>
             <li>
               <Link to="/login">Login</Link>
             </li>
-          </>
+          </div>
         )
         }
-      </ul >
-    </div>
+      </ul>
+    </header>
   )
 }
