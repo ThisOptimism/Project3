@@ -33,7 +33,7 @@ export default class Signup extends Component {
           })
         } else {
           this.props.setUser(response);
-          this.props.history.push('/');
+          this.props.history.push('/dashboard');
         }
       })
   }
