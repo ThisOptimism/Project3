@@ -50,8 +50,8 @@ router.delete('/deleteText/:id', (req,res,next) => {
 //to update the text
 
 router.put('/updateText/:id', (req,res, next) => {
-    const { title } = req.body;
-Text.findByIdAndUpdate(req.params.id, { title }, { new : true})
+    const { title, type, sourceLang, body, author, releaseDate, rating, difficulty, readingTime} = req.body;
+Text.findByIdAndUpdate(req.params.id, { title, type, sourceLang, body, author, releaseDate, rating, difficulty, readingTime }, { new : true})
 .then(textToUpdate => {
     res.status(200).json(textToUpdate)
 })
