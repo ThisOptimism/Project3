@@ -24,7 +24,7 @@ class App extends React.Component {
       <>
         <NavBar user={ this.state.user } setUser={ this.setUser } />
         <Switch>
-          <Route exact path='/' component={ Home } />
+          <Route exact path='/' component={ Home } user={ this.state.user } />
           <Route exact path='/signup' render={ props => <Signup setUser={ this.setUser } { ...props } /> } />
           <Route exact path='/login' render={ props => <Login setUser={ this.setUser } { ...props } /> } />
           <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
