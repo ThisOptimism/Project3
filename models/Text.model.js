@@ -17,13 +17,11 @@ const TextSchema = new Schema({
   },
   body: String,
   author: String,
-  relaseDate: Date,
+  releaseDate: Date,
   rating: Number,
   difficulty: Number,
   readingTime: Number
 })
-
-
 
 
 const Text = model("Text", TextSchema);
