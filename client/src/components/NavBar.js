@@ -19,8 +19,12 @@ export default function NavBar(props) {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link to='/' onClick={ () => handleLogout() }>Logout</Link>
+              <Link to='/library'>Library</Link>
             </li>
+            <li>
+              <Link to='/' onClick={ () => handleLogout() }>Logout</Link>
+            </li>            
+
           </div>
         ) : (
           <div className="menu">
