@@ -111,6 +111,8 @@ app.use("/api/auth", auth);
 const text = require("./routes/textList");
 app.use("/api/textList", text)
 
+const vocabList = require("./routes/vocabList");
+app.use("/api/vocabList", vocabList)
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
