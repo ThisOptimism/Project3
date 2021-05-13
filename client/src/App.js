@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import LibraryPage from './components/LibraryPage'
+import SpecificText from './components/SpecificText'
 
 
 
@@ -29,6 +30,7 @@ class App extends React.Component {
           <Route exact path='/login' render={ props => <Login setUser={ this.setUser } { ...props } /> } />
           <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
           <Route exact path='/library' render={ props => <LibraryPage setUser={ this.setUser } { ...props } /> } />
+          <Route exact path='/texts/:id' render={ props => <SpecificText setUser={ this.setUser } {...props} /> } />
         </Switch>
       </>
     )
