@@ -9,9 +9,7 @@ const userSchema = new Schema({
     unique: true
   },
   password: String,
-  email: {
-    type: String,
-  },
+  email: String,
   profilePicture: String,
   vocabLists: [{
     type: Schema.Types.ObjectId,

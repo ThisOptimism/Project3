@@ -10,7 +10,6 @@ export default class Signup extends Component {
     nativeLang: 'EN',
     targetLang: 'EN',
     message: '',
-
   }
 
   handleChange = e => {

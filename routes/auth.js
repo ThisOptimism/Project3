@@ -27,23 +27,27 @@ router.post('/signup', (req, res, next) => {
   // validation passed - password is long enough and the username is not empty
   // check if the username already exists
   User.findOne({
-      username: username
+      $or: [{
+        username: username
+      }, {
+        email: email
+      }]
     })
     .then(userFromDB => {
       // if user exists -> we render signup again
       if (userFromDB !== null) {
         return res.status(400).json({
-          message: 'This username is already taken'
+          message: 'This username/email is already taken'
         });
       } else {
         // the username is available
         // we create the hashed password
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(password, salt);
-        console.log(hash);
+        console.log(hash, username, email);
         // create the user in the database
         User.create({
-            username: username,
+            username: username.toLowerCase(),
             password: hash,
             email: email,
             nativeLang: nativeLang,

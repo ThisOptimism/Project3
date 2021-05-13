@@ -11,7 +11,7 @@ const signup = (username, password, email, nativeLang, targetLang) => {
 }
 
 const login = (username, password) => {
-  return axios.post('/api/auth/login', { username, password })
+  return axios.post('/api/auth/login', { username: username.toLowerCase(), password })
     .then(response => {
       return response.data;
     })
