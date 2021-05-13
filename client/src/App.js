@@ -4,6 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Signup from './components/Signup';
 import Login from './components/Login'
+import LibraryPage from './components/LibraryPage'
+
+
 
 class App extends React.Component {
   state = {
@@ -20,6 +23,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/signup' render={ props => <Signup setUser={ this.setUser } { ...props } /> } />
           <Route exact path='/login' render={ props => <Login setUser={ this.setUser } { ...props } /> } />
+          <Route exact path='/library' render={ props => <LibraryPage setUser={ this.setUser } { ...props } /> } />
         </Switch>
       </>
     )
