@@ -72,7 +72,7 @@ export default class SpecificText extends Component {
     //   word.slice(word.indexOf("'"))
     // }
     // console.log(word.split())
-    return word.replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "").toLowerCase()
+    return word.toLowerCase().replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "")
   }
   render() {
     // console.log(this.props.match.params.id)

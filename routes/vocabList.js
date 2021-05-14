@@ -4,7 +4,7 @@ const VocabList = require('../models/VocabList.model')
 
 //to create a vocabulary list
 
-router.post('/addVocabList', (req,res,next) => {
+router.post('/addVocabList', (req, res, next) => {
   //get all the vocabList detail
   const {
     name,
@@ -12,7 +12,7 @@ router.post('/addVocabList', (req,res,next) => {
     targetLang,
     words,
     createdBy
-} = req.body
+  } = req.body
   VocabList.create({
     name: name,
     nativeLang: nativeLang,
@@ -20,61 +20,64 @@ router.post('/addVocabList', (req,res,next) => {
     words: words,
     createdBy: createdBy
   })
-.catch(err => {
-  next(err)
-})
+    .then(response => {
+      res.status(200).json(response.data)
+    })
+    .catch(err => {
+      res.json(err)
+    })
 })
 
 //to delete a vocabulary list
 
-router.delete('/deleteVocabList/:id', (req,res,next)=>{
+router.delete('/deleteVocabList/:id', (req, res, next) => {
   VocabList.findByIdAndDelete(req.params.id)
-  .then(deletedVocabList => {
-    res.status(200).json({
-      message : 'List deleted'
-  })
-  .catch(err => {
-    next(err)
-})
-})
+    .then(deletedVocabList => {
+      res.status(200).json({
+        message: 'List deleted'
+      })
+        .catch(err => {
+          next(err)
+        })
+    })
 })
 
 //to update a vocabulary list
 
-router.put('/updateVocabList/:id', (req,res, next) => {
+router.put('/updateVocabList/:id', (req, res, next) => {
   const { name, nativeLang, targetLang, words } = req.body;
-  VocabList.findByIdAndUpdate(req.params.id, { name, nativeLang, targetLang, words }, { new : true})
-.then(vocabListToUpdate => {
-  res.status(200).json(vocabListToUpdate)
-})
+  VocabList.findByIdAndUpdate(req.params.id, { name, nativeLang, targetLang, words }, { new: true })
+    .then(vocabListToUpdate => {
+      res.status(200).json(vocabListToUpdate)
+    })
 })
 
 router.put('/addWord/:listId', (req, res, next) => {
   console.log(req.body);
-  
-  VocabList.findByIdAndUpdate(req.params.listId, { $push: {words: req.body.word}}, {new: true})
-  .then(listWithNewWord => {
-    res.status(200).json( {message: 'Word successfully added.', newList: listWithNewWord})
-  })
+
+  VocabList.findByIdAndUpdate(req.params.listId, { $push: { words: req.body.word } }, { new: true })
+    .then(listWithNewWord => {
+      res.status(200).json({ message: 'Word successfully added.', newList: listWithNewWord })
+    })
 })
 
 //to get a vocabulary list
 
-router.get('/findVocabList/:id', (req,res,next) => {
+router.get('/findVocabList/:id', (req, res, next) => {
   VocabList.findById(req.params.id)
-  .then(vocabListId => {
-      if(vocabListId == null){
-          return res.status(400).json({
-              message : 'This vocabulary list does not exist'
-          })
+    .then(vocabListId => {
+      if (vocabListId == null) {
+        return res.status(400).json({
+          message: 'This vocabulary list does not exist'
+        })
       } else {
-          res.status(200).json(vocabListId)
-          // is the textId the value returned from the database ?
+        res.status(200).json(vocabListId)
+        // is the textId the value returned from the database ?
       }
-  })
-  .catch(err => {
+    })
+    .catch(err => {
       next(err)
-  })
+    })
 })
 
 
@@ -82,31 +85,32 @@ router.get('/findVocabList/:id', (req,res,next) => {
 
 router.get('/myVocabLists/:userId', (req, res, next) => {
   console.log(req.params.userId);
-  
+
   VocabList.find({
     createdBy: req.params.userId
   })
-  .then (vocabLists => {
-    if (vocabLists == null){
-      return res.status(400).json({
-          message : "You haven't made any vocab lists yet"
-      })
-  } else {
-    res.status(200).json(vocabLists)
-  }
-  })
+    .then(vocabLists => {
+      if (vocabLists == null) {
+        return res.status(400).json({
+          message: "You haven't made any vocab lists yet"
+        })
+      } else {
+        res.status(200).json(vocabLists)
+      }
+    })
+    .catch(err => res.json(err))
 })
 
 //to get all the vocabulary list
 
-router.get('/allVocabList', (req,res,next) => {
+router.get('/allVocabList', (req, res, next) => {
   VocabList.find()
-  .then(vocabList => {
+    .then(vocabList => {
       res.json(vocabList);
-  })
-  .catch(err => {
+    })
+    .catch(err => {
       next(err)
-  })
+    })
 })
 
 
