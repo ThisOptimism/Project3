@@ -60,6 +60,7 @@ aside {
   animation: sidebarReveal 0.5s ease-in-out;
 }
 
+
 @keyframes sidebarReveal {
   from {
     transform: translateX(100%);
