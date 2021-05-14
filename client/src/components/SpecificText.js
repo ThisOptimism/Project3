@@ -66,7 +66,7 @@ export default class SpecificText extends Component {
     this.showSideBar(translatedWord)
   }
   prepWordForApi(word) {
-    // console.log('word: ', word);
+    console.log('word: ', word);
     // console.log(word[word.length-3]);
 
     // console.log(word.replace(/'/g,''));
@@ -78,7 +78,7 @@ export default class SpecificText extends Component {
     //   word.slice(word.indexOf("'"))
     // }
     // console.log(word.split())
-    return word.replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "").toLowerCase()
+    return word.toLowerCase().replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "")
   }
   render() {
     // console.log(this.props.match.params.id)
