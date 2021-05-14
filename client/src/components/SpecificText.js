@@ -9,7 +9,7 @@ export default class SpecificText extends Component {
   state= {
     textTitle: '',
     textBody: '',
-    sideBar: false, 
+    sideBar: true, 
     wordToBeTranslated: '',
     wordTranslated: '',
     targetLang: 'FR',
@@ -90,8 +90,6 @@ export default class SpecificText extends Component {
 
   render() {
     // console.log(this.props.match.params.id)
-    console.log(this.props.setUser);
-    
 
     return (
       <main>

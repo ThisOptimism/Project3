@@ -3,11 +3,29 @@ import React from 'react';
 
 class SideBar extends React.Component {
   state = {
-    showVocabList: false,
+    showVocabList: true,
     showNewVocabListForm: false,
     newVocabListName: 'Vocab from ' + this.props.textTitle,
-    }
-  
+    myVocabLists: []
+  }
+
+  componentDidMount = () => {
+
+    this.updateVocabLists();
+
+  }
+
+  updateVocabLists = () => {
+    console.log('updating lists');
+    
+    axios.get(`http://localhost:5005/api/vocabList/myVocabLists/${this.props.user._id}`)
+    .then(response => {
+      const mappedLists = response.data.map(list => <li>{list.name}</li>)
+      this.setState({
+        myVocabLists:mappedLists,
+      })
+    })
+  }
   
   createVocabList = e => {
 
@@ -22,6 +40,15 @@ class SideBar extends React.Component {
         createdBy: this.props.user._id
       })
 
+      this.updateVocabLists();
+
+      this.setState({
+        newVocabListName: '',
+        showVocabList: false,
+        showNewVocabListForm: false,
+      })
+
+ 
   }
 
   handleChange = e => {
@@ -29,15 +56,16 @@ class SideBar extends React.Component {
       newVocabListName: e.target.value
     })
   }
+
+  showVocabList = () => {
+    console.log('showing vocab list');
+    
+    this.updateVocabLists();
+
+    this.setState({ showVocabList: !this.state.showVocabList })
+  }
   
-    render() {
-    // console.log(this.props.sourceLangWord);
-
-    // getUsersVocabLists = () => {
-
-    // }
-
-
+  render() {
 
     return (
       <aside>
@@ -47,16 +75,17 @@ class SideBar extends React.Component {
           <p>Definition</p>
         </div>
 
-        <button onClick={ e => this.setState({ showVocabList: !this.state.showVocabList }) }>add to vocabulary list</button>
+        <button onClick={ this.showVocabList} >add to vocabulary list</button>
 
         <button>Already Read</button>
         {this.state.showVocabList && 
         <>
           <h3>your lists</h3>
-          <button onClick={() => this.setState({ showNewVocabListForm: true })}>Create a new Vocab list</button>
+          { this.state.myVocabLists }
+          <button onClick={() => {this.setState({ showNewVocabListForm: true })}}>Create a new Vocab list</button>
           {this.state.showNewVocabListForm && 
           <form onSubmit={this.createVocabList}>
-            <label for="listName">Name of List:</label>
+            <label htmlFor="listName">Name of List:</label>
             <input value={ this.state.newVocabListName } onChange={this.handleChange} name="name" id="listName" />
             <button type="submit" >Submit</button>
           </form>
