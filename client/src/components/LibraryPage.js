@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 // import sampleText from '../sampleText';
 import TextDiv from './TextDiv';
+import AddText from './AddText';
 
 export default class LibraryPage extends Component {
 
@@ -25,6 +26,7 @@ export default class LibraryPage extends Component {
           // map(text => <TextDiv key={text._id} text={text}/>)
           //It it difficult to filter over an array with a TextDiv component
           //The original array is composed of object - the key are more easily accessible
+  
         })
       }
     )
@@ -51,11 +53,12 @@ export default class LibraryPage extends Component {
         <form>
         <label>
           Title / Author:
-          <input type="text" 
+        </label>
+          <input type="text"                 
           value={this.state.name} 
           onChange={this.handleQueryChange} />
-        </label>
-      </form>
+        </form>
+      {this.props.user && <AddText getText={this.getAllTexts}/> }                               
       {mappedTexts}
       </main>
     )

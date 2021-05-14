@@ -7,6 +7,11 @@ const {
 
 const TextSchema = new Schema({
   title: String,
+  genre: {
+    type: [String],
+    enum: ['drama', 'fiction', 'mystery', 'horror', 'thriller', 'historical', 'romance', 'non-fiction', 'sci-fi', 'educational',
+   'biographical', 'erotic', 'crime', 'action', 'childrens', 'comedy']
+  },
   type: {
     type: String,
     enum: ['book', 'poem', 'article']

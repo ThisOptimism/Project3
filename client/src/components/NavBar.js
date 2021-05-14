@@ -11,7 +11,7 @@ export default function NavBar(props) {
 
   return (
     <header>
-      <h1>LingoFish</h1>
+      <Link to='/'><h1>LingoFish</h1></Link>
       <ul>
         { props.user ? (
           <div className="menu">
