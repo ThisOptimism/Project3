@@ -12,6 +12,7 @@ export default class SpecificText extends Component {
     textBody: '',
     sideBar: false,
     wordToBeTranslated: '',
+    wordTranslated: '',
     targetLang: 'FR'
   }
   
@@ -44,23 +45,28 @@ export default class SpecificText extends Component {
   }
 
   showSideBar = (e) => {
+    
     this.setState({
       sideBar: !this.state.sideBar,
-      wordToBeTranslated: e
+      // wordToBeTranslated: e
     })
   }
 
   handleTranslation = async (word) => {
+    
     console.log(word);
     
     const newWord = this.prepWordForApi(word);
     console.log(newWord);
     
     //console.log(translateWords(newWord, 'FR'));
-    const translatedWords = await translateWords(newWord, this.state.targetLang)
+    const translatedWord = await translateWords(newWord, this.state.targetLang)
     //console.log(translatedWords);
-    
-    this.showSideBar(translatedWords)
+    this.setState({
+      wordToBeTranslated: newWord,
+      wordTranslated: translatedWord,
+    })
+    this.showSideBar(translatedWord)
   }
 
   prepWordForApi(word) {
@@ -77,7 +83,7 @@ export default class SpecificText extends Component {
     // }
 
     // console.log(word.split())
-    return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+    return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").toLowerCase()
   }
 
   render() {
@@ -88,7 +94,7 @@ export default class SpecificText extends Component {
       <main>
         <h1>{this.state.textTitle}</h1>
         <p>{this.state.textBody}</p>
-        {this.state.sideBar && <SideBar word={this.state.wordToBeTranslated}/>}
+        {this.state.sideBar && <SideBar sourceLangWord={this.state.wordToBeTranslated} targetLangWord={this.state.wordTranslated}/>}
       </main>
     )
   }

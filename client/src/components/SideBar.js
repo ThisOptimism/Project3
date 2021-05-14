@@ -6,13 +6,14 @@ class SideBar extends React.Component {
   }
 
   render() {
-    console.log(this.props.word);
+    console.log(this.props.sourceLangWord);
 
     return (
       <aside>
         <div className="translation">
-          <h3>{ this.props.word }</h3>
-          <p>definition</p>
+          <h3>{ this.props.targetLangWord }</h3>
+          <h4>{ this.props.sourceLangWord }</h4>
+          <p>Definition</p>
         </div>
 
         <button onClick={ e => this.setState({ showVocabList: !this.state.showVocabList }) }>add to vocabulary list</button>
