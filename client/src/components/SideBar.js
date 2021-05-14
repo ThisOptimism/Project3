@@ -11,7 +11,6 @@ class SideBar extends React.Component {
     return (
       <aside>
         <div className="translation">
-
           <h3>{ this.props.word }</h3>
           <p>definition</p>
         </div>

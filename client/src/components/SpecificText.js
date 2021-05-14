@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import SideBar from './SideBar'
+import SideBar from './SideBar';
+import translateWords from '../services/translate'
+import translate from 'deepl';
 
 
 export default class SpecificText extends Component {
@@ -9,7 +11,8 @@ export default class SpecificText extends Component {
     textTitle: '',
     textBody: '',
     sideBar: false,
-    wordToBeTranslated: ''
+    wordToBeTranslated: '',
+    targetLang: 'FR'
   }
   
   componentDidMount = () => {
@@ -47,15 +50,24 @@ export default class SpecificText extends Component {
     })
   }
 
-  handleTranslation = (word) => {
-    const newWord = this.prepWordForApi(word);
-    this.showSideBar(newWord)
-  }
-  prepWordForApi(word) {
-    console.log('word: ', word);
-    console.log(word[word.length-3]);
+  handleTranslation = async (word) => {
+    console.log(word);
     
-    console.log(word.replace(/'/g,''));
+    const newWord = this.prepWordForApi(word);
+    console.log(newWord);
+    
+    //console.log(translateWords(newWord, 'FR'));
+    const translatedWords = await translateWords(newWord, this.state.targetLang)
+    //console.log(translatedWords);
+    
+    this.showSideBar(translatedWords)
+  }
+
+  prepWordForApi(word) {
+    // console.log('word: ', word);
+    // console.log(word[word.length-3]);
+    
+    // console.log(word.replace(/'/g,''));
     
     
     // if (word.indexOf('n') >= 0) {
@@ -64,12 +76,12 @@ export default class SpecificText extends Component {
     //   word.slice(word.indexOf("'"))
     // }
 
-    console.log(word.split())
+    // console.log(word.split())
     return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
   }
 
   render() {
-    console.log(this.props.match.params.id)
+    // console.log(this.props.match.params.id)
 
 
     return (

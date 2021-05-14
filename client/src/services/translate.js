@@ -1,14 +1,16 @@
 import axios from 'axios';
 import translate from 'deepl';
 
-const translator = (word, targetLang) => {
-  translate({
+const translateWords = async (word, targetLang) => {
+  return translate({
       free_api: true,
       text: word,
       target_lang: targetLang,
-      auth_key: 'c4d15740-4878-d0bf-6dd6-67e60ffe8c8c:fx',
+      auth_key: 'c4d15740-4878-d0bf-6dd6-67e60ffe8c8c:fx'
     })
-    .then(res => console.log(res.data.translations.text))
+    .then(res => res.data.translations[0].text)
+    .catch(err => console.log(err)
+    )
 }
 
-export default translator;
+export default translateWords;

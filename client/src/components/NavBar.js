@@ -11,7 +11,7 @@ export default function NavBar(props) {
 
   return (
     <header>
-      <h1>WordFish</h1>
+      <h1>LingoFish</h1>
       <ul>
         { props.user ? (
           <div className="menu">
