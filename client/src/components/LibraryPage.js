@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import sampleText from '../sampleText';
+// import sampleText from '../sampleText';
 import TextDiv from './TextDiv';
 
 export default class LibraryPage extends Component {
 
   state= {
-    mappedTexts: []
+    texts: [],
+    name:'',
+    author: ''
   }
 
   componentDidMount = () => {
@@ -17,21 +19,44 @@ export default class LibraryPage extends Component {
     axios.get('http://localhost:5005/api/textList/allText')
     .then(
       response => {
+        console.log(response.data)
         this.setState({
-          mappedTexts: response.data.map(text => <TextDiv key={text._id} text={text}/>)
+          texts: response.data
+          // map(text => <TextDiv key={text._id} text={text}/>)
+          //It it difficult to filter over an array with a TextDiv component
+          //The original array is composed of object - the key are more easily accessible
         })
       }
     )
   }
 
+  handleQueryChange = e => {
+    console.log(e.target.value)
+    this.setState({
+      name : e.target.value
+    })
+  }
 
   render() {
-    console.log(sampleText);
+
+ let filterredTexts = this.state.texts.filter(e => {
+   return (`${e.title.toLowerCase()} ${e.author.toLowerCase()}`.includes(this.state.name.toLowerCase()))
+ }) 
+
+ let mappedTexts = filterredTexts.map(text => <TextDiv key={text._id} text={text}/>)
     
     return (
       <main>
         <h1>Library Page</h1>
-      {this.state.mappedTexts}
+        <form>
+        <label>
+          Title / Author:
+          <input type="text" 
+          value={this.state.name} 
+          onChange={this.handleQueryChange} />
+        </label>
+      </form>
+      {mappedTexts}
       </main>
     )
   }
