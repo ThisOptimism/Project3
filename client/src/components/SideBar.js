@@ -11,20 +11,27 @@ class SideBar extends React.Component {
 
   componentDidMount = () => {
 
-    this.updateVocabLists();
+    this.updateDisplayedVocabLists();
 
   }
 
-  updateVocabLists = () => {
+  updateDisplayedVocabLists = () => {
     console.log('updating lists');
     
     axios.get(`http://localhost:5005/api/vocabList/myVocabLists/${this.props.user._id}`)
     .then(response => {
-      const mappedLists = response.data.map(list => <li>{list.name}</li>)
+      const mappedLists = response.data.map(list => <li key={list._id}>{list.name} <button onClick={() => this.addWordToList(list._id)}>Add to this list</button></li>)
       this.setState({
         myVocabLists:mappedLists,
       })
     })
+  }
+
+  addWordToList = listId => {
+    console.log('adding word to list')
+    axios.put(`http://localhost:5005/api/vocabList/addWord/${listId}`, {word: [this.props.sourceLangWord, this.props.targetLangWord]})
+    .then(response => console.log(response))
+
   }
   
   createVocabList = e => {
@@ -40,15 +47,13 @@ class SideBar extends React.Component {
         createdBy: this.props.user._id
       })
 
-      this.updateVocabLists();
+      this.updateDisplayedVocabLists();
 
       this.setState({
         newVocabListName: '',
         showVocabList: false,
         showNewVocabListForm: false,
       })
-
- 
   }
 
   handleChange = e => {
@@ -59,8 +64,7 @@ class SideBar extends React.Component {
 
   showVocabList = () => {
     console.log('showing vocab list');
-    
-    this.updateVocabLists();
+    if (!this.state.showVocabList)  this.updateDisplayedVocabLists();
 
     this.setState({ showVocabList: !this.state.showVocabList })
   }
@@ -80,8 +84,9 @@ class SideBar extends React.Component {
         <button>Already Read</button>
         {this.state.showVocabList && 
         <>
-          <h3>your lists</h3>
+          <h3>My Lists</h3>
           { this.state.myVocabLists }
+
           <button onClick={() => {this.setState({ showNewVocabListForm: true })}}>Create a new Vocab list</button>
           {this.state.showNewVocabListForm && 
           <form onSubmit={this.createVocabList}>

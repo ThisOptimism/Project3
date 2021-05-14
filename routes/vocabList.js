@@ -49,6 +49,15 @@ router.put('/updateVocabList/:id', (req,res, next) => {
 })
 })
 
+router.put('/addWord/:listId', (req, res, next) => {
+  console.log(req.body);
+  
+  VocabList.findByIdAndUpdate(req.params.listId, { $push: {words: req.body.word}}, {new: true})
+  .then(listWithNewWord => {
+    res.status(200).json( {message: 'Word successfully added.', newList: listWithNewWord})
+  })
+})
+
 //to get a vocabulary list
 
 router.get('/findVocabList/:id', (req,res,next) => {

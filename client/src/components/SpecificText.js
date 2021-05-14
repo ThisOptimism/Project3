@@ -9,7 +9,7 @@ export default class SpecificText extends Component {
   state= {
     textTitle: '',
     textBody: '',
-    sideBar: true, 
+    sideBar: false, 
     wordToBeTranslated: '',
     wordTranslated: '',
     targetLang: 'FR',
