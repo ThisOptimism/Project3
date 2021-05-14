@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import sampleText from '../sampleText';
 import TextDiv from './TextDiv';
+import AddText from './AddText';
 
 export default class LibraryPage extends Component {
 
@@ -25,13 +26,12 @@ export default class LibraryPage extends Component {
   }
 
 
-  render() {
-    console.log(sampleText);
-    
+  render() {   
     return (
       <main>
         <h1>Library Page</h1>
       {this.state.mappedTexts}
+      {this.props.user && <AddText getText={this.getAllTexts}/> }
       </main>
     )
   }

@@ -1,94 +1,96 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import SideBar from './SideBar';
-import translateWords from '../services/translate'
-import translate from 'deepl';
+import translateWords from '../services/translate';
 
 
 export default class SpecificText extends Component {
 
-  state= {
+  state = {
     textTitle: '',
     textBody: '',
     sideBar: false,
     wordToBeTranslated: '',
     targetLang: 'FR'
   }
-  
-  componentDidMount = () => {
-    
-    axios.get(`http://localhost:5005/api/textList/findText/${this.props.match.params.id}`) 
-    .then(text => {
-      // console.log(text.data);
 
-      const clickableText = this.makeTextClickable(text.data.body)
-      this.setState({
-        textTitle: text.data.title,
-        textBody: clickableText,
+  componentDidMount = () => {
+
+    axios.get(`http://localhost:5005/api/textList/findText/${this.props.match.params.id}`)
+      .then(text => {
+        // console.log(text.data);
+
+        const clickableText = this.makeTextClickable(text.data.body)
+        this.setState({
+          textTitle: text.data.title,
+          textBody: clickableText,
+        })
       })
-    })
-    .catch(err => console.log(err)
-    )
+      .catch(err => console.log(err)
+      )
   }
 
   makeTextClickable = (text) => {
     // const splitText = this.splitText(text);
-    
-    const clickableText = 
+
+    const clickableText =
       text.split(/\s+/)
-        .map(word => 
-          <span onClick={e => this.handleTranslation(e.target.innerText)}>{word + ' '}</span>
+        .map(word =>
+          <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ word + ' ' }</span>
         );
 
     return clickableText;
   }
 
   showSideBar = (e) => {
-    this.setState({
-      sideBar: !this.state.sideBar,
-      wordToBeTranslated: e
-    })
+    if (e === this.state.wordToBeTranslated) {
+      this.setState({
+        sideBar: false,
+      })
+    } else {
+      this.setState({
+        wordToBeTranslated: e,
+        sideBar: true
+      })
+    }
   }
 
   handleTranslation = async (word) => {
     console.log(word);
-    
+
     const newWord = this.prepWordForApi(word);
     console.log(newWord);
-    
+
     //console.log(translateWords(newWord, 'FR'));
     const translatedWords = await translateWords(newWord, this.state.targetLang)
     //console.log(translatedWords);
-    
+
     this.showSideBar(translatedWords)
   }
 
   prepWordForApi(word) {
     // console.log('word: ', word);
     // console.log(word[word.length-3]);
-    
+
     // console.log(word.replace(/'/g,''));
-    
-    
+
+
     // if (word.indexOf('n') >= 0) {
     //   console.log('removing apostrophe');
-      
+
     //   word.slice(word.indexOf("'"))
     // }
 
     // console.log(word.split())
-    return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+    return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
   }
 
   render() {
-    // console.log(this.props.match.params.id)
-
-
     return (
       <main>
-        <h1>{this.state.textTitle}</h1>
-        <p>{this.state.textBody}</p>
-        {this.state.sideBar && <SideBar word={this.state.wordToBeTranslated}/>}
+        <h1>{ this.state.textTitle }</h1>
+        <p>{ this.state.textBody }</p>
+        {this.state.sideBar && <SideBar word={ this.state.wordToBeTranslated } /> }
       </main>
     )
   }
