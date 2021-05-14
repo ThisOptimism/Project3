@@ -1,7 +1,7 @@
 import axios from 'axios';
 import translate from 'deepl';
 
-const translateWords = async (word, targetLang) => {
+const translateWords = (word, targetLang) => {
   return translate({
       free_api: true,
       text: word,
