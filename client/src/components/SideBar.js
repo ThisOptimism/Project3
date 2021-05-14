@@ -71,8 +71,17 @@ class SideBar extends React.Component {
   
   render() {
 
+//     // 
+// aside {
+//   border: 1px black solid;
+//   position: absolute;
+//   height: 200px;
+//   right: 0;
+//   animation: sidebarReveal 0.5s ease-in-out;
+// /
+// class="absolute right-10 top-1/4 text-left border-4 border-black p-10 h-auto rounded-md"
     return (
-      <aside>
+      <aside >
         <div className="translation">
           <h3>{ this.props.targetLangWord }</h3>
           <h4>{ this.props.sourceLangWord }</h4>

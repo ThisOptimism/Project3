@@ -35,10 +35,10 @@ export default class SpecificText extends Component {
           const overlineWords = word.split('\n')
           
           return <>
-            <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ overlineWords[0] }</span><br />
-            <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ overlineWords[1] + ' ' }</span>
+            <span class="hover:text-blue-600" onClick={ e => this.handleTranslation(e.target.innerText) }>{ overlineWords[0] }</span><br />
+            <span class="hover:text-blue-600" onClick={ e => this.handleTranslation(e.target.innerText) }>{ overlineWords[1] + ' ' }</span>
           </>
-        } else return <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ word + ' ' }</span>
+        } else return <span class="hover:text-blue-600"  onClick={ e => this.handleTranslation(e.target.innerText) }>{ word + ' ' }</span>
       }
       );
   }
@@ -78,16 +78,16 @@ export default class SpecificText extends Component {
     //   word.slice(word.indexOf("'"))
     // }
     // console.log(word.split())
-    return word.replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "").toLowerCase()
+    return word.toLowerCase().replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "")
   }
   render() {
     // console.log(this.props.match.params.id)
     return (
-      <main>
-        <h1>{ this.state.textTitle }</h1>
-        <p>{ this.state.textBody }</p>
+      <div class="mx-auto p-10 text-center">
+        <h1 class="text-3xl py-7">{ this.state.textTitle }</h1>
+        <p class="text-lg">{ this.state.textBody }</p>
         {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } /> }
-      </main>
+      </div>
     )
   }
 }

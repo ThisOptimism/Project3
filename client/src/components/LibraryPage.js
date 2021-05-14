@@ -48,8 +48,8 @@ export default class LibraryPage extends Component {
  let mappedTexts = filterredTexts.map(text => <TextDiv key={text._id} text={text}/>)
     
     return (
-      <main>
-        <h1>Library Page</h1>
+      <main class="mx-auto p-10 text-center">
+        <h1 class="text-3xl py-7">Library Page</h1>
         <form>
         <label>
           Title / Author:
@@ -58,8 +58,10 @@ export default class LibraryPage extends Component {
           value={this.state.name} 
           onChange={this.handleQueryChange} />
         </form>
-      {this.props.user && <AddText getText={this.getAllTexts}/> }                               
-      {mappedTexts}
+      {this.props.user && <AddText getText={this.getAllTexts}/> }  
+      <div class="flex flex-wrap space-around ">
+        {mappedTexts}
+      </div>                             
       </main>
     )
   }
