@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import SideBar from './SideBar';
-import translateWords from '../services/translate'
+import translateWords from '../services/translate';
+
 export default class SpecificText extends Component {
   state = {
     textTitle: '',
@@ -27,14 +28,19 @@ export default class SpecificText extends Component {
       )
   }
   makeTextClickable = (text) => {
-    // const splitText = this.splitText(text);
+    return text.split(' ')
+      .map(word => {
+        if (word.includes('\n')) {
 
-    const clickableText =
-      text.split(/\s+/)
-        .map(word =>
-          <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ word + ' ' }</span>
-        );
-    return clickableText;
+          const overlineWords = word.split('\n')
+          
+          return <>
+            <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ overlineWords[0] }</span><br />
+            <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ overlineWords[1] + ' ' }</span>
+          </>
+        } else return <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ word + ' ' }</span>
+      }
+      );
   }
   showSideBar = (e) => {
 
