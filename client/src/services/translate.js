@@ -1,4 +1,3 @@
-import axios from 'axios';
 import translate from 'deepl';
 
 const translateWords = (word, targetLang) => {

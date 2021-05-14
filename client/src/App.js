@@ -19,6 +19,7 @@ class App extends React.Component {
   }
   setUser = user => {
     this.setState({ user })
+    return user;
   }
 
   render() {
@@ -30,8 +31,8 @@ class App extends React.Component {
           <Route exact path='/signup' render={ props => <Signup setUser={ this.setUser } { ...props } /> } />
           <Route exact path='/login' render={ props => <Login setUser={ this.setUser } { ...props } /> } />
           <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
-          <Route exact path='/library' render={ props => <LibraryPage setUser={ this.setUser } { ...props } /> } />
-          <Route exact path='/texts/:id' render={ props => <SpecificText setUser={ this.setUser } {...props} /> } />
+          <Route exact path='/library' render={ props => <LibraryPage user={ this.state.user } { ...props } /> } />
+          <Route exact path='/texts/:id' render={ props => <SpecificText user={ this.state.user } {...props} /> } />
         </Switch>
         <Footer />
       </>

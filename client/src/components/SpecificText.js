@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import SideBar from './SideBar';
 import translateWords from '../services/translate'
-import translate from 'deepl';
 
 
 export default class SpecificText extends Component {
@@ -10,10 +9,12 @@ export default class SpecificText extends Component {
   state= {
     textTitle: '',
     textBody: '',
-    sideBar: false,
+    sideBar: false, 
     wordToBeTranslated: '',
     wordTranslated: '',
-    targetLang: 'FR'
+    targetLang: 'FR',
+    sourceLang: ''
+
   }
   
   componentDidMount = () => {
@@ -25,6 +26,7 @@ export default class SpecificText extends Component {
       const clickableText = this.makeTextClickable(text.data.body)
       this.setState({
         textTitle: text.data.title,
+        sourceLang: text.data.sourceLang,
         textBody: clickableText,
       })
     })
@@ -83,18 +85,19 @@ export default class SpecificText extends Component {
     // }
 
     // console.log(word.split())
-    return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").toLowerCase()
+    return word.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"").toLowerCase()
   }
 
   render() {
     // console.log(this.props.match.params.id)
-
+    console.log(this.props.setUser);
+    
 
     return (
       <main>
         <h1>{this.state.textTitle}</h1>
         <p>{this.state.textBody}</p>
-        {this.state.sideBar && <SideBar sourceLangWord={this.state.wordToBeTranslated} targetLangWord={this.state.wordTranslated}/>}
+        {this.state.sideBar && <SideBar sourceLangWord={this.state.wordToBeTranslated} targetLangWord={this.state.wordTranslated} textTitle={this.state.textTitle} sourceLang={this.state.sourceLang}  targetLang={this.state.targetLang} user={ this.props.user }/>}
       </main>
     )
   }
