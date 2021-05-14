@@ -9,10 +9,14 @@ export default class VocabList extends Component {
 
   }
 
+  
+
+
   render() {
     return (
       <div>
         <h3>my lists</h3>
+       { VocabList }
       </div>
     )
   }

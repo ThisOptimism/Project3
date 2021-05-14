@@ -9,9 +9,12 @@ export default class SpecificText extends Component {
   state = {
     textTitle: '',
     textBody: '',
-    sideBar: false,
+    sideBar: false, 
     wordToBeTranslated: '',
-    targetLang: 'FR'
+    wordTranslated: '',
+    targetLang: 'FR',
+    sourceLang: ''
+
   }
 
   componentDidMount = () => {
@@ -56,16 +59,20 @@ export default class SpecificText extends Component {
   }
 
   handleTranslation = async (word) => {
+    
     console.log(word);
 
     const newWord = this.prepWordForApi(word);
     console.log(newWord);
 
     //console.log(translateWords(newWord, 'FR'));
-    const translatedWords = await translateWords(newWord, this.state.targetLang)
+    const translatedWord = await translateWords(newWord, this.state.targetLang)
     //console.log(translatedWords);
-
-    this.showSideBar(translatedWords)
+    this.setState({
+      wordToBeTranslated: newWord,
+      wordTranslated: translatedWord,
+    })
+    this.showSideBar(translatedWord)
   }
 
   prepWordForApi(word) {

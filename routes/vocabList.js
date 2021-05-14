@@ -49,6 +49,15 @@ router.put('/updateVocabList/:id', (req,res, next) => {
 })
 })
 
+router.put('/addWord/:listId', (req, res, next) => {
+  console.log(req.body);
+  
+  VocabList.findByIdAndUpdate(req.params.listId, { $push: {words: req.body.word}}, {new: true})
+  .then(listWithNewWord => {
+    res.status(200).json( {message: 'Word successfully added.', newList: listWithNewWord})
+  })
+})
+
 //to get a vocabulary list
 
 router.get('/findVocabList/:id', (req,res,next) => {
@@ -68,6 +77,25 @@ router.get('/findVocabList/:id', (req,res,next) => {
   })
 })
 
+
+// to get all vocab lists from a specific user
+
+router.get('/myVocabLists/:userId', (req, res, next) => {
+  console.log(req.params.userId);
+  
+  VocabList.find({
+    createdBy: req.params.userId
+  })
+  .then (vocabLists => {
+    if (vocabLists == null){
+      return res.status(400).json({
+          message : "You haven't made any vocab lists yet"
+      })
+  } else {
+    res.status(200).json(vocabLists)
+  }
+  })
+})
 
 //to get all the vocabulary list
 

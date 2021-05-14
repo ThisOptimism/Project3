@@ -19,7 +19,7 @@ export default class LibraryPage extends Component {
     .then(
       response => {
         this.setState({
-          mappedTexts: response.data.map(text => <TextDiv key={text._id} text={text}/>)
+          mappedTexts: response.data.map(text => <TextDiv key={text._id} text={text} setUser={ this.setUser }/>)
         })
       }
     )

@@ -18,7 +18,7 @@ export default class AddText extends Component {
         selectedGenre.push(genre.value)
       })
     } else { selectedGenre = genre.value }
-   
+
 
     axios.post('http://localhost:5005/api/textList/addText', {
       title: title.value,
@@ -52,10 +52,10 @@ export default class AddText extends Component {
     return (
       <form onSubmit={ e => this.handleSubmit(e) }>
         <label htmlFor="title">Title: </label>
-        <input type="text" name="title" />
+        <input required type="text" name="title" />
 
         <label htmlFor="author">Author: </label>
-        <input type="author" name="author" />
+        <input required type="author" name="author" />
 
         <label htmlFor="releaseDate">Release Date: </label>
         <input type="date" name="releaseDate" />
