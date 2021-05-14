@@ -33,7 +33,7 @@ class App extends React.Component {
           <Route exact path='/login' render={ props => <Login setUser={ this.setUser } { ...props } /> } />
           <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
           <Route exact path='/library' render={ props => <LibraryPage user={ this.state.user } setUser={ this.setUser } { ...props } /> } />
-          <Route exact path='/texts/:id' render={ props => <SpecificText setUser={ this.setUser } {...props} /> } />
+          <Route exact path='/texts/:id' render={ props => <SpecificText user={ this.state.user } { ...props } /> } />
           <Route path="/404" component={ NotFound } />
           <Redirect to="/404" />
         </Switch>

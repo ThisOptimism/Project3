@@ -1,38 +1,31 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import SideBar from './SideBar';
-import translateWords from '../services/translate';
-
-
+import translateWords from '../services/translate'
 export default class SpecificText extends Component {
-
   state = {
     textTitle: '',
     textBody: '',
-    sideBar: false, 
+    sideBar: false,
     wordToBeTranslated: '',
     wordTranslated: '',
     targetLang: 'FR',
     sourceLang: ''
-
   }
-
   componentDidMount = () => {
-
     axios.get(`http://localhost:5005/api/textList/findText/${this.props.match.params.id}`)
       .then(text => {
         // console.log(text.data);
-
         const clickableText = this.makeTextClickable(text.data.body)
         this.setState({
           textTitle: text.data.title,
+          sourceLang: text.data.sourceLang,
           textBody: clickableText,
         })
       })
       .catch(err => console.log(err)
       )
   }
-
   makeTextClickable = (text) => {
     // const splitText = this.splitText(text);
 
@@ -41,25 +34,17 @@ export default class SpecificText extends Component {
         .map(word =>
           <span onClick={ e => this.handleTranslation(e.target.innerText) }>{ word + ' ' }</span>
         );
-
     return clickableText;
   }
-
   showSideBar = (e) => {
-    if (e === this.state.wordToBeTranslated) {
-      this.setState({
-        sideBar: false,
-      })
-    } else {
-      this.setState({
-        wordToBeTranslated: e,
-        sideBar: true
-      })
-    }
-  }
 
+    this.setState({
+      sideBar: !this.state.sideBar,
+      // wordToBeTranslated: e
+    })
+  }
   handleTranslation = async (word) => {
-    
+
     console.log(word);
 
     const newWord = this.prepWordForApi(word);
@@ -74,7 +59,6 @@ export default class SpecificText extends Component {
     })
     this.showSideBar(translatedWord)
   }
-
   prepWordForApi(word) {
     // console.log('word: ', word);
     // console.log(word[word.length-3]);
@@ -87,17 +71,16 @@ export default class SpecificText extends Component {
 
     //   word.slice(word.indexOf("'"))
     // }
-
     // console.log(word.split())
-    return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+    return word.replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "").toLowerCase()
   }
-
   render() {
+    // console.log(this.props.match.params.id)
     return (
       <main>
         <h1>{ this.state.textTitle }</h1>
         <p>{ this.state.textBody }</p>
-        {this.state.sideBar && <SideBar word={ this.state.wordToBeTranslated } /> }
+        {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } /> }
       </main>
     )
   }
