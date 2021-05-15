@@ -52,6 +52,7 @@ export default class SpecificText extends Component {
   handleTranslation = async (word) => {
 
     console.log(word);
+    // this.showSideBar();
 
     const newWord = this.prepWordForApi(word);
     console.log(newWord);
@@ -86,7 +87,7 @@ export default class SpecificText extends Component {
       <div class="mx-auto p-10 text-center">
         <h1 class="text-3xl py-7">{ this.state.textTitle }</h1>
         <p class="text-lg">{ this.state.textBody }</p>
-        {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } /> }
+        {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
       </div>
     )
   }
