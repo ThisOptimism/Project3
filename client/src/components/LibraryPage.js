@@ -6,62 +6,62 @@ import AddText from './AddText';
 
 export default class LibraryPage extends Component {
 
-  state= {
+  state = {
     texts: [],
-    name:'',
+    name: '',
     author: ''
   }
 
   componentDidMount = () => {
     this.getAllTexts();
   }
-  
+
   getAllTexts = () => {
     axios.get('http://localhost:5005/api/textList/allText')
-    .then(
-      response => {
-        console.log(response.data)
-        this.setState({
-          texts: response.data
-          // map(text => <TextDiv key={text._id} text={text}/>)
-          //It it difficult to filter over an array with a TextDiv component
-          //The original array is composed of object - the key are more easily accessible
-  
-        })
-      }
-    )
+      .then(
+        response => {
+          console.log(response.data)
+          this.setState({
+            texts: response.data
+            // map(text => <TextDiv key={text._id} text={text}/>)
+            //It it difficult to filter over an array with a TextDiv component
+            //The original array is composed of object - the key are more easily accessible
+
+          })
+        }
+      )
   }
 
   handleQueryChange = e => {
     console.log(e.target.value)
     this.setState({
-      name : e.target.value
+      name: e.target.value
     })
   }
 
   render() {
 
- let filterredTexts = this.state.texts.filter(e => {
-   return (`${e.title.toLowerCase()} ${e.author.toLowerCase()}`.includes(this.state.name.toLowerCase()))
- }) 
+    let filterredTexts = this.state.texts.filter(e => {
+      return (`${e.title.toLowerCase()} ${e.author.toLowerCase()}`.includes(this.state.name.toLowerCase()))
+    })
 
- let mappedTexts = filterredTexts.map(text => <TextDiv key={text._id} text={text}/>)
-    
+    let mappedTexts = filterredTexts.map(text => <TextDiv key={ text._id } text={ text } />)
+
     return (
       <main class="mx-auto p-10 text-center">
         <h1 class="text-3xl py-7">Library Page</h1>
         <form>
-        <label>
-          Title / Author:
+          <label>
+            Title / Author:
         </label>
-          <input type="text"                 
-          value={this.state.name} 
-          onChange={this.handleQueryChange} />
+          <input type="text"
+            value={ this.state.name }
+            onChange={ this.handleQueryChange } />
         </form>
-      {this.props.user && <AddText getText={this.getAllTexts}/> }  
-      <div class="flex flex-wrap space-around ">
-        {mappedTexts}
-      </div>                             
+        {this.props.user && <AddText getText={ this.getAllTexts } /> }
+        <div class="flex flex-wrap space-around ">
+          { mappedTexts }
+        </div>
       </main>
     )
   }

@@ -8,6 +8,12 @@ export default class AddText extends Component {
     genre: []
   }
 
+  closeForm = () => {
+    this.setState({
+      showForm: false
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { title, author, releaseDate, type, genre, body } = e.target;
@@ -37,7 +43,6 @@ export default class AddText extends Component {
   }
 
   form = () => {
-
     const genreOptions = [{ value: 'drama', label: 'drama' }, { value: 'fiction', label: 'fiction' },
     { value: 'mystery', label: 'mystery' }, { value: 'horror', label: 'horror' }, { value: 'thriller', label: 'thriller' },
     { value: 'historical', label: 'historical' }, { value: 'romance', label: 'romance' }, { value: 'action', label: 'action' },
@@ -45,50 +50,57 @@ export default class AddText extends Component {
     { value: 'biographical', label: 'biographical' }, { value: 'erotic', label: 'erotic' }, { value: 'crime', label: 'crime' },
     { value: 'childrens', label: 'childrens' }, { value: 'comedy', label: 'comedy' }]
 
-    // const options = genreOptions.map(option => {
-    //   return <option key={ option } value={ option }>{ option }</option>
-    // })
-
     return (
-      <form onSubmit={ e => this.handleSubmit(e) }>
-        <label htmlFor="title">Title: </label>
-        <input required type="text" name="title" />
-
-        <label htmlFor="author">Author: </label>
-        <input required type="author" name="author" />
-
-        <label htmlFor="releaseDate">Release Date: </label>
-        <input type="date" name="releaseDate" />
-
-        <label htmlFor="type">Type: </label>
-        <select name="type" onChange={ e => this.setState({ genre: [this.state.genre, e.target.value] }) } id="type">
-          <option value="book">Book</option>
-          <option value="poem">Poem</option>
-          <option value="article">Article</option>
-        </select>
-
-        <label htmlFor="genre">Genre: </label>
-        <Select
-          isMulti
-          name="genre"
-          options={ genreOptions }
-          className="basic-multi-select"
-          classNamePrefix="select"
-        />
-        {/* <select multiple={ true } name="genre" id="genre">
-          { options }
-        </select> */}
-
-        <label htmlFor="body">Body: </label>
-        <textarea id="body" name="body"></textarea>
-        <button> + add</button>
-      </form>
+      <div className="flex justify-center items-center fixed h-screen top-0 left-0 right-0 bottom-0 z-10 bg-black bg-opacity-60">
+        <form onSubmit={ e => this.handleSubmit(e) } className="flex flex-col py-10 px-10 bg-white text-left relative w-80 rounded-md">
+          <div className="flex flex-col mb-5">
+            <legend className="text-center">Add a new text</legend>
+            <button onClick={ this.closeForm } className="absolute top-1 right-1">✖</button>
+          </div>
+          <div className="flex flex-col mb-5">
+            <label htmlFor="title">Title: </label>
+            <input className="border-b" required type="text" name="title" />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="author">Author: </label>
+            <input className="border-b" required type="author" name="author" />
+          </div>
+          <div className="flex flex-col mb-5">
+            <label htmlFor="releaseDate">Release Date: </label>
+            <input type="date" name="releaseDate" />
+          </div>
+          <label htmlFor="type">Type: </label>
+          <div className="flex flex-col mb-5">
+            <select name="type" onChange={ e => this.setState({ genre: [this.state.genre, e.target.value] }) } id="type">
+              <option value="book">Book</option>
+              <option value="poem">Poem</option>
+              <option value="article">Article</option>
+            </select>
+          </div>
+          <div className="flex flex-col mb-5">
+            <label htmlFor="genre">Genre: </label>
+            <Select
+              isMulti
+              name="genre"
+              options={ genreOptions }
+              className="basic-multi-select"
+              classNamePrefix="select"
+            />
+          </div>
+          <div className="flex flex-col mb-5">
+            <label htmlFor="body">Body: </label>
+            <textarea className="border" id="body" name="body"></textarea>
+          </div>
+          <button> + add</button>
+        </form>
+      </div>
     )
   }
+
   render() {
     return (
       <div>
-        <button onClick={ e => this.setState({ showForm: !this.state.showForm }) }>Add Text</button>
+        <button className="bg-gray-900 text-white py-4 px-8 shadow-md rounded-md" onClick={ e => this.setState({ showForm: !this.state.showForm }) }>Add Text</button>
         {this.state.showForm && this.form() }
       </div>
     )
