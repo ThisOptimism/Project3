@@ -100,7 +100,7 @@ export default class AddText extends Component {
   render() {
     return (
       <div>
-        <button className="bg-gray-900 text-white py-4 px-8 shadow-md rounded-md" onClick={ e => this.setState({ showForm: !this.state.showForm }) }>Add Text</button>
+        <button className="bg-gray-900 text-white font-bold py-4 px-8 shadow-md rounded-md" onClick={ e => this.setState({ showForm: !this.state.showForm }) }>Add Text</button>
         {this.state.showForm && this.form() }
       </div>
     )
