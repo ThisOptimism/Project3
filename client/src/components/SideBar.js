@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { capitalize } from '../services/helpers';
 
 class SideBar extends React.Component {
   state = {
@@ -81,27 +82,26 @@ class SideBar extends React.Component {
 // /
 // class="absolute right-10 top-1/4 text-left border-4 border-black p-10 h-auto rounded-md"
     return (
-      <aside >
+      <aside className="absolute right-10 top-1/4 text-left border-4 h-auto rounded-md bg-gray-200 flex flex-col text-center">
+        <button className="text-white  py-1 px-2 rounded self-end">✖️</button>
         <div className="translation">
-          <h3>{ this.props.targetLangWord }</h3>
-          <h4>{ this.props.sourceLangWord }</h4>
-          <p>Definition</p>
+          <h3 className="text-3xl font-bold">{ capitalize(this.props.targetLangWord) }</h3>
+          <h4 className="text-2xl pb-2">{ capitalize(this.props.sourceLangWord) }</h4>
         </div>
 
-        <button onClick={ this.showVocabList} >add to vocabulary list</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white mr-1 py-2 px-4 rounded" onClick={ this.showVocabList} >add to vocabulary list</button>
 
-        <button>Already Read</button>
         {this.state.showVocabList && 
         <>
           <h3>My Lists</h3>
           { this.state.myVocabLists }
 
-          <button onClick={() => {this.setState({ showNewVocabListForm: true })}}>Create a new Vocab list</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded" onClick={() => {this.setState({ showNewVocabListForm: true })}}>Create a new Vocab list</button>
           {this.state.showNewVocabListForm && 
           <form onSubmit={this.createVocabList}>
             <label htmlFor="listName">Name of List:</label>
             <input value={ this.state.newVocabListName } onChange={this.handleChange} name="name" id="listName" />
-            <button type="submit" >Submit</button>
+            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded">Create</button>
           </form>
           
           }

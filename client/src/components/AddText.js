@@ -52,7 +52,7 @@ export default class AddText extends Component {
 
     return (
       <div className="flex justify-center items-center fixed h-screen top-0 left-0 right-0 bottom-0 z-10 bg-black bg-opacity-60">
-        <form onSubmit={ e => this.handleSubmit(e) } className="flex flex-col py-10 px-10 bg-white text-left relative w-80 rounded-md">
+        <form onSubmit={ e => this.handleSubmit(e) } className="flex flex-col py-10 px-10 bg-white text-left relative w-1/3 rounded-md">
           <div className="flex flex-col mb-5">
             <legend className="text-center">Add a new text</legend>
             <button onClick={ this.closeForm } className="absolute top-1 right-1">✖</button>
