@@ -56,7 +56,10 @@ aside {
 
   animation: sidebarReveal 0.5s ease-in-out;
 }
-
+/* border: 1px black solid;
+position: absolute;
+height: 200px;
+right: 0; */
 
 @keyframes sidebarReveal {
   from {
