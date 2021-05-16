@@ -2,6 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import { capitalize } from '../services/helpers';
 import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 class SideBar extends React.Component {
   state = {
@@ -10,6 +13,7 @@ class SideBar extends React.Component {
     newVocabListName: 'Vocab from ' + this.props.textTitle,
     myVocabLists: []
   }
+
 
   componentDidMount = () => {
 
@@ -22,11 +26,12 @@ class SideBar extends React.Component {
     
     axios.get(`http://localhost:5005/api/vocabList/myVocabLists/${this.props.user._id}`)
     .then(response => {
-      const mappedLists = response.data.map(list => {
+      response.data.map(list => {
         const newListOption = ({ value: list._id, label: list.name });
         this.setState(state => {
           myVocabLists: state.myVocabLists.push(newListOption)
         })
+        return newListOption;
       })
 
     })
@@ -125,12 +130,9 @@ class SideBar extends React.Component {
         <>
           <form onSubmit={this.addToVocabLists}>
             <h3>My Lists</h3>
-            <Select id="listsSelect" options={ this.state.myVocabLists } isMulti name="listsToAddTo" className="basic-multi-select" />
+            <Select components={animatedComponents} id="listsSelect" options={ this.state.myVocabLists } isMulti name="listsToAddTo" className="basic-multi-select" />
             <button type="submit" className="bg-green-500">Add to your lists</button>
           </form>
-          
-
-
 
           <button className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded" onClick={() => {this.setState({ showNewVocabListForm: true })}}>Create a new Vocab list</button>
 

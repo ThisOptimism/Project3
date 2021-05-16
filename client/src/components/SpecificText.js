@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import SideBar from './SideBar';
 import translateWords from '../services/translate';
+import Select from 'react-select';
+
 
 export default class SpecificText extends Component {
   state = {
@@ -66,6 +68,14 @@ export default class SpecificText extends Component {
     })
     this.showSideBar(translatedWord)
   }
+
+  updateTargetLang = (e) => {
+    
+    this.setState({
+      targetLang: e.value
+    })
+  }
+
   prepWordForApi(word) {
     console.log('word: ', word);
     // console.log(word[word.length-3]);
@@ -83,8 +93,22 @@ export default class SpecificText extends Component {
   }
   render() {
     // console.log(this.props.match.params.id)
+    const langOptions = [
+      { value:'EN', label: 'English'},
+      { value:'DE', label: 'German'},
+      { value:'FR', label: 'French'},
+      { value:'ES', label: 'Spanish'},
+      { value:'IT', label: 'Italian'},
+      { value:'NL', label: 'Dutch'},
+      { value:'PL', label: 'Polish'}
+    ]
+
     return (
       <div class="mx-auto p-10 text-center">
+        <div className="flex-col flex items-center">
+          <label htmlFor="targetLangSelect">Translate to</label>
+          <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
+        </div>
         <h1 class="text-3xl py-7">{ this.state.textTitle }</h1>
         <p class="text-lg">{ this.state.textBody }</p>
         {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
