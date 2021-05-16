@@ -104,7 +104,7 @@ export default class SpecificText extends Component {
     ]
 
     return (
-      <div class="mx-auto p-10 text-center">
+      <div class="mx-auto lg:ml-52 p-10 text-center  max-w-screen-md bg-white">
         <div className="flex-col flex items-center">
           <label htmlFor="targetLangSelect">Translate to</label>
           <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
