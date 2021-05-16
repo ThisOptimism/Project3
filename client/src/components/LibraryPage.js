@@ -59,7 +59,7 @@ export default class LibraryPage extends Component {
             onChange={ this.handleQueryChange } />
         </form>
         {this.props.user && <AddText getText={ this.getAllTexts } /> }
-        <div className="flex flex-wrap space-around ">
+        <div className="flex flex-wrap justify-around">
           { mappedTexts }
         </div>
       </main>
