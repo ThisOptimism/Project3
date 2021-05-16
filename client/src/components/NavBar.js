@@ -10,7 +10,7 @@ export default function NavBar(props) {
   }
 
   return (
-    <header>
+    <header >
       <Link to='/'><h1 class="text-4xl">LingoFish</h1></Link>
       <ul>
         { props.user ? (

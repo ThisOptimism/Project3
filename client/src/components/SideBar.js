@@ -117,7 +117,7 @@ class SideBar extends React.Component {
 // /
 // class="absolute right-10 top-1/4 text-left border-4 border-black p-10 h-auto rounded-md"
     return (
-      <aside className="fixed w-screen left-0 md:left-auto md:w-1/3 md:right-10 top-1/4 border-4 h-auto rounded-md bg-gray-200 flex flex-col text-center">
+      <aside className="fixed w-screen left-0 md:left-auto md:w-1/3 md:right-20 top-1/4  h-auto rounded-md  flex flex-col text-center p-6 bg-white bg-opacity-75 rounded-md">
         <button onClick={this.props.showSideBar} className="text-white  py-1 px-2 rounded self-end">✖️</button>
         <div className="translation">
           <h3 className="text-3xl font-bold">{ capitalize(this.props.targetLangWord) }</h3>

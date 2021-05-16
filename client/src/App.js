@@ -25,7 +25,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <body class=" flex flex-col min-h-screen">
+      <body class=" flex flex-col min-h-screen 
+        bg-gradient-to-r 
+        from-blue-400 
+        to-green-800 
+        via-blue-700
+        animate-gradient-xy
+      ">
         <NavBar user={ this.state.user } setUser={ this.setUser } />
         <main class="flex-grow">
           <Switch>

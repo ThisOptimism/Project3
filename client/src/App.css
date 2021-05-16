@@ -27,12 +27,11 @@ header {
   color: white;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(45, 49, 54);
   align-items: center;
 }
 
 footer {
-  background-color: rgb(45, 49, 54);
+  /* background-color: rgb(9, 68, 141); */
   text-align: center;
 }
 
