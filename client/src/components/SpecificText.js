@@ -12,7 +12,7 @@ export default class SpecificText extends Component {
     sideBar: false,
     wordToBeTranslated: '',
     wordTranslated: '',
-    targetLang: 'FR',
+    targetLang: 'EN',
     sourceLang: ''
   }
   componentDidMount = () => {
@@ -66,7 +66,7 @@ export default class SpecificText extends Component {
       wordToBeTranslated: newWord,
       wordTranslated: translatedWord,
     })
-    this.showSideBar(translatedWord)
+    if(!this.state.sideBar) this.showSideBar(translatedWord)
   }
 
   updateTargetLang = (e) => {
