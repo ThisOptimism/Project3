@@ -19,7 +19,6 @@ export default class VocabList extends Component {
       })
   }
 
-
   vocabLists = () => {
     return this.state.vocabLists.map(list => <VocabListDiv key={list._id} vocablist={ list } user={this.props.user}/>)
   }
@@ -28,7 +27,7 @@ export default class VocabList extends Component {
 
     return (
       <div>
-        <h3>my lists</h3>
+        <h3 className="text-3xl text-center mb-5 font-bold tracking-wide border-b pb-1">MY VOCABLISTS 📚</h3>
         {this.vocabLists() }
       </div>
     )

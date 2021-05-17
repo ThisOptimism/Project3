@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import LibraryPage from './components/LibraryPage';
 import SpecificText from './components/SpecificText';
+import VocabListDetail from './components/VocabListDetail';
 import NotFound from './components/NotFound'
 
 
@@ -41,6 +42,7 @@ class App extends React.Component {
             <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
             <Route exact path='/library' render={ props => <LibraryPage user={ this.state.user } setUser={ this.setUser } { ...props } /> } />
             <Route exact path='/texts/:id' render={ props => <SpecificText user={ this.state.user } { ...props } /> } />
+            <Route exact path='/vocablist/:id' render={ props => <VocabListDetail { ...props } /> } />
             <Route path="/404" component={ NotFound } />
             <Redirect to="/404" />
           </Switch>
