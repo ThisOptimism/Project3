@@ -23,7 +23,7 @@ export default class AddText extends Component {
         selectedGenre.push(genre.value)
       })
     } else { selectedGenre = genre.value }
-    
+
     axios.post('http://localhost:5005/api/textList/addText', {
       title: title.value,
       author: author.value,
@@ -48,11 +48,14 @@ export default class AddText extends Component {
     { value: 'biographical', label: 'biographical' }, { value: 'erotic', label: 'erotic' }, { value: 'crime', label: 'crime' },
     { value: 'childrens', label: 'childrens' }, { value: 'comedy', label: 'comedy' }]
 
-    const typeOptions = [{value: 'book', label: 'Book'}, {value: 'poem', label: 'Poem'}, {value: 'article', label: 'Article'}]
+    const typeOptions = [{ value: 'book', label: 'Book' }, { value: 'poem', label: 'Poem' }, { value: 'article', label: 'Article' }]
 
     return (
       <div className="flex justify-center overflow-y-scroll items-center fixed h-screen top-0 left-0 right-0 bottom-0 z-10 bg-black bg-opacity-60">
-        <form onSubmit={ e => this.handleSubmit(e) } className="flex flex-col py-10 px-10 bg-white text-left relative w-1/3 rounded-md">
+        <form
+          onSubmit={ e => this.handleSubmit(e) }
+          className="flex flex-col w-500px py-10 px-10 text-left relative rounded-md bg-white">
+
           <div className="flex flex-col mb-5">
             <legend className="text-center text-2xl font-semibold">Add a new text</legend>
             <button onClick={ this.closeForm } className="absolute top-1 text-xl right-1">✖</button>
@@ -71,12 +74,12 @@ export default class AddText extends Component {
           </div>
           <label htmlFor="type"><strong>Type:</strong></label>
           <div className="flex flex-col mb-5">
-            <Select 
-            name="type" 
-            options={typeOptions}
-            className="basic-single" 
-            classNamePrefix="select" 
-            id="type">
+            <Select
+              name="type"
+              options={ typeOptions }
+              className="basic-single"
+              classNamePrefix="select"
+              id="type">
             </Select>
           </div>
           <div className="flex flex-col mb-5">
