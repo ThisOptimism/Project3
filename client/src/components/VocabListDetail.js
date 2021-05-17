@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 export default class VocabListDetail extends Component {
   state = {
@@ -33,6 +34,7 @@ export default class VocabListDetail extends Component {
             </div>
           )
         })}
+       <Link to={`/vocablist/${this.props.match.params.id}/flashcards`} > <button className="bg-green-700 text-white px-3 py-2 rounded-lg mt-3">Learn this set!</button></Link>
       </div>
     )
   }
