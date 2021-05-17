@@ -12,7 +12,6 @@ export default class VocabList extends Component {
   getVocabListFromUser = () => {
     axios.get(`http://localhost:5005/api/vocabList/myVocabLists/${this.props.user._id}`)
       .then(res => {
-        console.log(res.data);
         this.setState({
           vocabLists: res.data
         })
@@ -22,7 +21,6 @@ export default class VocabList extends Component {
   vocabLists = () => {
     return this.state.vocabLists.map(list => <VocabListDiv key={list._id} vocablist={ list } user={this.props.user}/>)
   }
-
   render() {
 
     return (

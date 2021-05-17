@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 
 export default function VocabListDiv(props) {
-
-  console.log(props.user);
-
   return (
     <Link to={`/vocablist/${props.vocablist._id}`}>
       <div className="w-90 mb-10 bg-gray-100 rounded-lg p-5">

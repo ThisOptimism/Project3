@@ -26,9 +26,9 @@ export default class VocabListDetail extends Component {
     return (
       <div className="text-center">
         <h1 className="font-bold text-2xl text-center mb-5">{this.state.vocabListName}</h1>
-        {this.state.vocabListWords.map(wordpairs => {
+        {this.state.vocabListWords.map((wordpairs, index) => {
           return (
-            <div className="text-lg leading-releaxed">
+            <div key={index} className="text-lg leading-releaxed">
             <span>{wordpairs[0]} – </span><span>{wordpairs[1]}</span>
             </div>
           )
