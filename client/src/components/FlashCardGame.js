@@ -13,7 +13,7 @@ export default class FlashCardGame extends Component {
   }
 
   componentDidMount = () =>{
-    axios.get(`http://localhost:5005/api/vocabList/findVocabList/${this.props.match.params.id}`)
+    axios.get(`/api/vocabList/findVocabList/${this.props.match.params.id}`)
     .then(response => {
       this.setState({
         vocabListObject: response.data,
