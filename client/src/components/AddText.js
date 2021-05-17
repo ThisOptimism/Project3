@@ -48,35 +48,40 @@ export default class AddText extends Component {
     { value: 'biographical', label: 'biographical' }, { value: 'erotic', label: 'erotic' }, { value: 'crime', label: 'crime' },
     { value: 'childrens', label: 'childrens' }, { value: 'comedy', label: 'comedy' }]
 
+    const typeOptions = [{value: 'book', label: 'Book'}, {value: 'poem', label: 'Poem'}, {value: 'article', label: 'Article'}]
+
     return (
-      <div className="flex justify-center items-center fixed h-screen top-0 left-0 right-0 bottom-0 z-10 bg-black bg-opacity-60">
+      <div className="flex justify-center overflow-y-scroll items-center fixed h-screen top-0 left-0 right-0 bottom-0 z-10 bg-black bg-opacity-60">
         <form onSubmit={ e => this.handleSubmit(e) } className="flex flex-col py-10 px-10 bg-white text-left relative w-1/3 rounded-md">
           <div className="flex flex-col mb-5">
-            <legend className="text-center">Add a new text</legend>
+            <legend className="text-center text-2xl font-semibold">Add a new text</legend>
             <button onClick={ this.closeForm } className="absolute top-1 right-1">✖</button>
           </div>
           <div className="flex flex-col mb-5">
-            <label htmlFor="title">Title: </label>
+            <label htmlFor="title"><strong>Title:</strong> </label>
             <input className="border-b" required type="text" name="title" />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="author">Author: </label>
+          <div className="flex flex-col mb-5">
+            <label htmlFor="author"><strong>Author:</strong></label>
             <input className="border-b" required type="author" name="author" />
           </div>
           <div className="flex flex-col mb-5">
-            <label htmlFor="releaseDate">Release Date: </label>
+            <label htmlFor="releaseDate"><strong>Release Date: </strong> </label>
             <input type="date" name="releaseDate" />
           </div>
-          <label htmlFor="type">Type: </label>
+          <label htmlFor="type"><strong>Type:</strong></label>
           <div className="flex flex-col mb-5">
-            <select name="type" onChange={ e => this.setState({ genre: [this.state.genre, e.target.value] }) } id="type">
-              <option value="book">Book</option>
-              <option value="poem">Poem</option>
-              <option value="article">Article</option>
-            </select>
+            <Select 
+            name="type" 
+            options={typeOptions}
+            className="basic-single" 
+            classNamePrefix="select" 
+            onChange={ e => this.setState({ genre: [this.state.genre, e.target.value] }) } 
+            id="type">
+            </Select>
           </div>
           <div className="flex flex-col mb-5">
-            <label htmlFor="genre">Genre: </label>
+            <label htmlFor="genre"><strong>Genre:</strong></label>
             <Select
               isMulti
               name="genre"
@@ -86,10 +91,10 @@ export default class AddText extends Component {
             />
           </div>
           <div className="flex flex-col mb-5">
-            <label htmlFor="body">Body: </label>
-            <textarea className="border" id="body" name="body"></textarea>
+            <label htmlFor="body"><strong>Body:</strong> </label>
+            <textarea className="border h-48" id="body" name="body"></textarea>
           </div>
-          <button> + add</button>
+          <button className="py-2 px-4 bg-gray-900 text-white font-bold"> + add</button>
         </form>
       </div>
     )
