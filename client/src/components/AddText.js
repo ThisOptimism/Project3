@@ -76,8 +76,6 @@ export default class AddText extends Component {
             options={typeOptions}
             className="basic-single" 
             classNamePrefix="select" 
-            onChange={ e => this.setState({ type:  e.value}) } 
-            // onChange={ e => this.setState({ genre: [this.state.genre, e.target.value] }) } 
             id="type">
             </Select>
           </div>
