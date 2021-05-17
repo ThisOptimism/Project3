@@ -17,15 +17,13 @@ export default class AddText extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { title, author, releaseDate, type, genre, body } = e.target;
-
     let selectedGenre = [];
     if (genre.length > 1) {
       genre.forEach(genre => {
         selectedGenre.push(genre.value)
       })
     } else { selectedGenre = genre.value }
-
-
+    
     axios.post('http://localhost:5005/api/textList/addText', {
       title: title.value,
       author: author.value,

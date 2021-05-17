@@ -22,7 +22,7 @@ const TextSchema = new Schema({
   },
   body: String,
   author: String,
-  releaseDate: Date,
+  releaseDate: String,
   rating: Number,
   difficulty: Number,
   readingTime: Number
