@@ -24,7 +24,7 @@ class SideBar extends React.Component {
   updateDisplayedVocabLists = () => {
     console.log('updating lists');
     
-    axios.get(`http://localhost:5005/api/vocabList/myVocabLists/${this.props.user._id}`)
+    axios.get(`/api/vocabList/myVocabLists/${this.props.user._id}`)
     .then(response => {
       response.data.map(list => {
         const newListOption = ({ value: list._id, label: list.name });
@@ -43,7 +43,7 @@ class SideBar extends React.Component {
     
     e.preventDefault();
 
-    axios.post('http://localhost:5005/api/vocabList/addVocabList', 
+    axios.post('/api/vocabList/addVocabList', 
       { name:form.name.value ,
         nativeLang: this.props.sourceLang,
         targetLang: this.props.targetLang,
@@ -87,7 +87,7 @@ class SideBar extends React.Component {
 
   addWordToList = listId => {
     console.log('adding word to list')
-    axios.put(`http://localhost:5005/api/vocabList/addWord/${listId}`, {word: [this.props.sourceLangWord, this.props.targetLangWord]})
+    axios.put(`/api/vocabList/addWord/${listId}`, {word: [this.props.sourceLangWord, this.props.targetLangWord]})
     .then(response => console.log(response))
 
   }

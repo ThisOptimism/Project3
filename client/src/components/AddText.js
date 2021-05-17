@@ -24,7 +24,7 @@ export default class AddText extends Component {
       })
     } else { selectedGenre = genre.value }
 
-    axios.post('http://localhost:5005/api/textList/addText', {
+    axios.post('/api/textList/addText', {
       title: title.value,
       author: author.value,
       releaseDate: new Date(releaseDate.value),

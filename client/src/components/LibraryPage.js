@@ -20,7 +20,7 @@ export default class LibraryPage extends Component {
   }
 
   getAllTexts = () => {
-    axios.get('http://localhost:5005/api/textList/allText')
+    axios.get('/api/textList/allText')
       .then(
         response => {
           console.log(response.data)
