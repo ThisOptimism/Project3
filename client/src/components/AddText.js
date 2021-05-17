@@ -92,7 +92,7 @@ export default class AddText extends Component {
           </div>
           <div className="flex flex-col mb-5">
             <label htmlFor="body"><strong>Body:</strong> </label>
-            <textarea className="border h-48" id="body" name="body"></textarea>
+            <textarea className="border h-48 pt-3 px-4" id="body" name="body"></textarea>
           </div>
           <button className="py-2 px-4 bg-gray-900 text-white font-bold"> + add</button>
         </form>
