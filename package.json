@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
+    "installxxx": "cd client && npm install",
+    "buildxxx": "cd client && npm run build",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently --kill-others \"npm run server\" \"npm run client\""
@@ -23,7 +23,8 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2bdf7ab3.chunk.css",
+    "main.js": "/static/js/main.c3b625e2.chunk.js",
+    "main.js.map": "/static/js/main.c3b625e2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7ce871b0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7ce871b0.js.map",
+    "static/js/2.baed6dd0.chunk.js": "/static/js/2.baed6dd0.chunk.js",
+    "static/js/2.baed6dd0.chunk.js.map": "/static/js/2.baed6dd0.chunk.js.map",
+    "static/js/3.f613aba8.chunk.js": "/static/js/3.f613aba8.chunk.js",
+    "static/js/3.f613aba8.chunk.js.map": "/static/js/3.f613aba8.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.2bdf7ab3.chunk.css.map": "/static/css/main.2bdf7ab3.chunk.css.map",
+    "static/js/2.baed6dd0.chunk.js.LICENSE.txt": "/static/js/2.baed6dd0.chunk.js.LICENSE.txt",
+    "static/media/courses__language__speak.5802e9fb.jpg": "/static/media/courses__language__speak.5802e9fb.jpg",
+    "static/media/dictionaryVector.ae120500.jpg": "/static/media/dictionaryVector.ae120500.jpg",
+    "static/media/free-poem-vector.9545684e.jpg": "/static/media/free-poem-vector.9545684e.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ce871b0.js",
+    "static/js/2.baed6dd0.chunk.js",
+    "static/css/main.2bdf7ab3.chunk.css",
+    "static/js/main.c3b625e2.chunk.js"
+  ]
+}
