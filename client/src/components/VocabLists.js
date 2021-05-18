@@ -26,7 +26,7 @@ export default class VocabLists extends Component {
     const VocabList = this.state.vocabLists.map((vocablist, index) => {
       return (
         <Link to={ `/vocablist/${vocablist._id}` }>
-          <div className="w-90 mb-10 bg-gray-100 rounded-lg p-5">
+          <div className="w-90 mb-10 bg-gray-200 bg-opacity-20 rounded-lg p-5">
             <h3 className="text-lg font-bold">{ vocablist.name }</h3>
             <span>{ vocablist.nativeLang }</span><span>{ vocablist.targetLang }</span>
             <h6><strong>created by: </strong></h6>
@@ -37,7 +37,11 @@ export default class VocabLists extends Component {
 
     return (
       <>
-        {VocabList }
+      <h1 className="text-center text-white text-3xl mb-5">All Vocablists</h1>
+        <div className="grid grid-cols-3 gap-x-10">
+          { VocabList }
+        </div>
+
       </>
     )
   }
