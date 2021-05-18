@@ -113,7 +113,7 @@ router.get('/allText', (req, res, next) => {
             res.json(textList);
         })
         .catch(err => {
-            next(err)
+            res.status(500).json(err)
         })
 })
 

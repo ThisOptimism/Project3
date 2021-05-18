@@ -10,7 +10,7 @@ export default class VocabList extends Component {
     this.getVocabListFromUser();
   }
   getVocabListFromUser = () => {
-    axios.get(`http://localhost:5005/api/vocabList/myVocabLists/${this.props.user._id}`)
+    axios.get(`/api/vocabList/myVocabLists/${this.props.user._id}`)
       .then(res => {
         this.setState({
           vocabLists: res.data

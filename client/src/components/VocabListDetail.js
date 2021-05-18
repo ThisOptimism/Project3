@@ -9,7 +9,7 @@ export default class VocabListDetail extends Component {
   }
 
   getVocabListDetail = () => {
-    axios.get(`http://localhost:5005/api/vocablist/findVocabList/${this.props.match.params.id}`)
+    axios.get(`/api/vocablist/findVocabList/${this.props.match.params.id}`)
       .then(vocablist => {
         this.setState({
           vocabListWords: vocablist.data.words,

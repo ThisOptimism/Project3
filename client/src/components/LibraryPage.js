@@ -20,7 +20,7 @@ export default class LibraryPage extends Component {
   }
 
   getAllTexts = () => {
-    axios.get('http://localhost:5005/api/textList/allText')
+    axios.get('/api/textList/allText')
       .then(
         response => {
           console.log(response.data)
@@ -29,7 +29,6 @@ export default class LibraryPage extends Component {
             // map(text => <TextDiv key={text._id} text={text}/>)
             //It it difficult to filter over an array with a TextDiv component
             //The original array is composed of object - the key are more easily accessible
-
           })
         }
       )

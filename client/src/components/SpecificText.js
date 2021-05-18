@@ -16,7 +16,7 @@ export default class SpecificText extends Component {
     sourceLang: ''
   }
   componentDidMount = () => {
-    axios.get(`http://localhost:5005/api/textList/findText/${this.props.match.params.id}`)
+    axios.get(`/api/textList/findText/${this.props.match.params.id}`)
       .then(text => {
         // console.log(text.data);
         const clickableText = this.makeTextClickable(text.data.body)
