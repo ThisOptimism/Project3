@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 export default function VocabListDiv(props) {
   return (
     <Link to={`/vocablist/${props.vocablist._id}`}>

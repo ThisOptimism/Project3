@@ -13,6 +13,7 @@ import SpecificText from './components/SpecificText';
 import VocabListDetail from './components/VocabListDetail';
 import FlashCardGame from './components/FlashCardGame';
 import NotFound from './components/NotFound'
+import { DragDropContext } from 'react-beautiful-dnd';
 
 
 
@@ -25,6 +26,10 @@ class App extends React.Component {
     return user;
   }
 
+  onDragend = result => {
+
+  }
+
   render() {
     return (
       <body class=" flex flex-col min-h-screen 
@@ -34,6 +39,7 @@ class App extends React.Component {
         via-blue-700
         animate-gradient-xy
       ">
+      <DragDropContext>
         <NavBar user={ this.state.user } setUser={ this.setUser } />
         <main class="flex-grow">
           <Switch>
@@ -42,7 +48,7 @@ class App extends React.Component {
             <Route exact path='/login' render={ props => <Login setUser={ this.setUser } { ...props } /> } />
             <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
             <Route exact path='/library' render={ props => <LibraryPage user={ this.state.user } setUser={ this.setUser } { ...props } /> } />
-            <Route exact path='/texts/:id' render={ props => <SpecificText user={ this.state.user } { ...props } /> } />
+            <Route exact path='/texts/:id' render={ props => <SpecificText user={ this.state.user } { ...props } /> } />      
             <Route exact path='/vocablist/:id' render={ props => <VocabListDetail { ...props } /> } />
             <Route exact path='/vocablist/:id/flashcards' render={ props => <FlashCardGame user={ this.state.user } { ...props } /> } />
             <Route path="/404" component={ NotFound } />
@@ -50,6 +56,7 @@ class App extends React.Component {
           </Switch>
         </main>
         <Footer />
+        </DragDropContext>
       </body>
     )
   }
