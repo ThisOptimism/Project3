@@ -13,7 +13,7 @@ export default class VocabLists extends Component {
     this.getVocablists()
   }
   getVocablists = () => {
-    axios.get('http://localhost:5005/api/vocablist/allVocabList')
+    axios.get('/api/vocablist/allVocabList')
       .then(vocablistsFromDb => {
         this.setState({
           vocabLists: vocablistsFromDb.data
