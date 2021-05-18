@@ -36,31 +36,34 @@ export default class Login extends Component {
 
   render() {
     return (
-      <main>
+      <div className="flex flex-col items-center justify-around">
+        <form className="flex flex-col justify-center items-center bg-white bg-opacity-70 w-96 min-w-min  mt-4 p-6 rounded shadow-2xl " onSubmit={ this.handleSubmit }>
         <h2>Login</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username: </label>
-          <input
+        <input
+            className="m-2 rounded-lg p-2 text-center"
             id="username"
             type="text"
             name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
+            placeholder="Username"
+            value={ this.state.username }
+            onChange={ this.handleChange }
           />
-          <label htmlFor="password">Password: </label>
+          {/* <label htmlFor="password">Password: </label> */}
           <input
+            className="m-2 rounded-lg p-2 text-center"
             id="password"
             type="password"
             name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
+            placeholder="Password"
+            value={ this.state.password }
+            onChange={ this.handleChange }
           />
-          <button type="submit">Log in</button>
+          <button className="bg-blue-500 py-2 px-3 rounded-lg hover:bg-blue-700 hover:text-white  duration-500" type="submit">Log in</button>
           {this.state.message && (
-            <h3>{this.state.message}</h3>
+            <h3 className="text-red-700 text-center p-3">{this.state.message}</h3>
           )}
         </form>
-      </main>
+      </div>
     )
   }
 }

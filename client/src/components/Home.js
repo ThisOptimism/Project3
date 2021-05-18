@@ -17,13 +17,13 @@ class Home extends React.Component {
  
         </section>
         <section className="text-center">
+          <Link to="/signup"><button className="bg-white px-4 py-2 rounded-lg hover:bg-blue-800 hover:text-white duration-500 ">Get started!</button></Link>
           <div id="infoSection" className="flex flex-wrap justify-around p-10">
             <HomePageServiceDiv heading="Instant translations" text="Just click on any word to see its translation in your chosen language" img={courseImg} />
             <HomePageServiceDiv text="Add words to your vocab lists, use flashcards and view lists from other users." heading="Create your own lists and dictionary" img={dictionaryImg} />
             <HomePageServiceDiv heading="Authentic, interesting texts" text="Choose from our library of articles, books and poems, or upload your favourite texts" img={poetryImg} />
             
           </div>
-          <Link to="/signup"><button className="bg-white p-4 rounded-lg hover:bg-green-200 ">Get started!</button></Link>
         </section>
       </main>
     )
