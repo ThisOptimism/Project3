@@ -5,7 +5,7 @@ import Select from 'react-select';
 export default class AddText extends Component {
   state = {
     showForm: false,
-    genre: []
+    genre: [],
   }
 
   closeForm = () => {

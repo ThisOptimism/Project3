@@ -83,7 +83,7 @@ export default class LibraryPage extends Component {
     ]
 
     return (
-      <main className="mx-auto p-10 text-center">
+      <>
         <h1 className="text-3xl py-7">Library Page</h1>
         <div>
         <form>
@@ -103,7 +103,7 @@ export default class LibraryPage extends Component {
         <div className="flex flex-wrap justify-around">
           { mappedTexts }
         </div>
-      </main>
+      </>
     )
   }
 }

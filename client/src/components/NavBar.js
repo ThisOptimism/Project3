@@ -22,6 +22,9 @@ export default function NavBar(props) {
               <Link to='/library'>Library</Link>
             </li>
             <li>
+              <Link to='/vocablist'>Vocab Lists</Link>
+            </li>
+            <li>
               <Link to='/' onClick={ () => handleLogout() }>Logout</Link>
             </li>            
 
