@@ -36,9 +36,9 @@ router.delete('/deleteVocabList/:id', (req, res, next) => {
       res.status(200).json({
         message: 'List deleted'
       })
-        .catch(err => {
-          next(err)
-        })
+    })
+    .catch(err => {
+      res.json(err)
     })
 })
 
