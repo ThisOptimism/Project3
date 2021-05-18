@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { logout } from '../services/auth';
 
 export default function NavBar(props) {
@@ -16,17 +16,29 @@ export default function NavBar(props) {
         { props.user ? (
           <div className="menu">
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <NavLink to="/dashboard" activeStyle={ {
+                fontWeight: "bold",
+                borderBottom: "1px solid white",
+                paddingBottom: "5px"
+              } }>Dashboard</NavLink>
             </li>
             <li>
-              <Link to='/library'>Library</Link>
+              <NavLink to='/library' activeStyle={ {
+                fontWeight: "bold",
+                borderBottom: "1px solid white",
+                paddingBottom: "5px"
+              } }>Library</NavLink>
             </li>
             <li>
-              <Link to='/vocablist'>Vocab Lists</Link>
+              <NavLink to='/vocablist' activeStyle={ {
+                fontWeight: "bold",
+                borderBottom: "1px solid white",
+                paddingBottom: "5px"
+              } }>Vocab Lists</NavLink>
             </li>
             <li>
-              <Link to='/' onClick={ () => handleLogout() }>Logout</Link>
-            </li>            
+              <NavLink to='/' onClick={ () => handleLogout() }>Logout</NavLink>
+            </li>
 
           </div>
         ) : (
