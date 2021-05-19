@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import TextDiv from './TextDiv';
 import AddText from './AddText';
 import Select from 'react-select'
+import glass from '../images/glass.png'
+
 
 export default class LibraryPage extends Component {
 
@@ -83,24 +85,34 @@ export default class LibraryPage extends Component {
 
     return (
       <>
-        <h1 className="text-3xl py-7">Library Page</h1>
-        <div>
+      <div className="min-h-full bg-blue-400">
+        <div className="w-3/12 mx-40">
         <form>
-          <label>
+          {/* <label className="block text-sm font-medium">
             Title / Author:
-          </label>
-          <input type="text"
+          </label> */}
+          <div className="pt-6 flex justify-between">
+          {/* <img className="w-11"/> */}
+          <input className='w-96 h-9 text-3xl' type="text" placeholder="Type in for title / author"  img src={glass} alt
             value={ this.state.name }
-            onChange={ this.handleQueryChange } /><br />
+            onChange={ this.handleQueryChange }/>
+          </div>
+            <div className="h-6 flex justify-between pt-8" >
+            <div>
             <label htmlFor="targetLangSelect">Choose a language</label>
-            <Select id='targetLangSelect' options={langOptions} onChange={this.updateTargetLang}/><br />
-            <label htmlFor="typeSelect">Choose a type</label>
-            <Select id='typeSelect' options={typeOptions} onChange={this.updateTargettype}/>
-        </form>
+            <Select className="w-52" id='targetLangSelect' options={langOptions} onChange={this.updateTargetLang}/>
+            </div>
+            <div>
+            <label className="ml-8" htmlFor="typeSelect">Choose a type</label>
+            <Select className="w-52 ml-8" id='typeSelect' options={typeOptions} onChange={this.updateTargettype}/>
+            </div>
+            </div>
+        </form><br />
         </div>
         {this.props.user && <AddText getText={ this.getAllTexts } /> }
         <div className="flex flex-wrap justify-around">
           { mappedTexts }
+        </div>
         </div>
       </>
     )
