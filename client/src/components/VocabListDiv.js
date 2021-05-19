@@ -38,8 +38,10 @@ export default class VocabListDiv extends Component {
         </Link>
         <span>{ this.props.vocablist.nativeLang }</span> – <span>{ this.props.vocablist.targetLang }</span>
         {this.props.user.username && <h6><strong>created by: </strong>{ this.props.vocablist.createdBy.username }</h6> }
-        <button onClick={ this.deleteList } className="absolute z-10 bottom-5 right-5 px-4 py-2 text-red-400 border border-red-400 hover:bg-red-400 hover:text-white font-bold rounded-lg transition-all">delete</button>
-        <button onClick={ e => this.setState({ showUpdateForm: !this.state.showUpdateForm }) }>Update</button>
+        <div className="mt-5">
+          <button onClick={ e => this.setState({ showUpdateForm: !this.state.showUpdateForm }) } className="mr-4 py-2 px-4 text-white rounded-lg font-bold bg-gray-800">Update</button>
+          <button onClick={ this.deleteList } className="px-4 py-2 text-red-400 border border-red-400 hover:bg-red-400 hover:text-white font-bold rounded-lg transition-all">delete</button>
+        </div>
         {this.state.showUpdateForm && <UpdateVocabList setUpdateForm={this.setUpdateForm} vocablist={ this.props.vocablist } /> }
       </div>
     )

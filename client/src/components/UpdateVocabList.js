@@ -30,17 +30,19 @@ export default class UpdateVocabList extends Component {
   }
 
   render() {
+
+    const wordsForState = []
     const Words = this.props.vocablist.words.map(words => {
       return (
         <>
-        
           <div className="flex flex-row">
-            <input className="bg-gray-100 text-gray-600 focus:text-black focus:outline-none" name="words" value={ words[0] } />
-            <input className="bg-gray-100 text-gray-600 focus:text-black focus:outline-none" name="words" value={ words[1] } />
+            <input className="input bg-gray-100 text-gray-600 focus:text-black focus:outline-none" name="words" value={ words[0] } />
+            <input className="input bg-gray-100 text-gray-600 focus:text-black focus:outline-none" name="words" value={ words[1] } />
           </div>
         </>
       )
     })
+    // const wordValues = 
 
     const langOptions = [
       { value: 'FR', label: 'French' },

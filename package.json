@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
+    "installxx": "cd client && npm install",
+    "buildxx": "cd client && npm run build",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently --kill-others \"npm run server\" \"npm run client\""
