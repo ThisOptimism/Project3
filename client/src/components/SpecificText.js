@@ -8,6 +8,7 @@ import Select from 'react-select';
 export default class SpecificText extends Component {
   state = {
     textTitle: '',
+    clickableTitle: '',
     textBody: '',
     sideBar: false,
     wordToBeTranslated: '',
@@ -22,7 +23,8 @@ export default class SpecificText extends Component {
         // console.log(text.data);
         const clickableText = this.makeTextClickable(text.data.body)
         this.setState({
-          textTitle: this.makeTextClickable(text.data.title),
+          textTitle: text.data.title,
+          clickableTitle: this.makeTextClickable(text.data.title),
           sourceLang: text.data.sourceLang,
           textBody: clickableText,
         })
@@ -111,7 +113,7 @@ export default class SpecificText extends Component {
           <label htmlFor="targetLangSelect">Translate to</label>
           <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
         </div>
-        <h1 class="text-3xl py-7">{ this.state.textTitle }</h1>
+        <h1 class="text-3xl py-7">{ this.state.clickableTitle }</h1>
         <p class="text-lg">{ this.state.textBody }</p>
         {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
       </div>
