@@ -51,7 +51,7 @@ class App extends React.Component {
             <Redirect to="/404" />
           </Switch>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     )
   }
