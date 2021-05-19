@@ -25,8 +25,8 @@ export default class VocabListDiv extends Component {
           <h3 className="text-lg font-bold">{ this.props.vocablist.name }</h3>
         </Link>
         <span>{ this.props.vocablist.nativeLang }</span> – <span>{ this.props.vocablist.targetLang }</span>
-        {this.props.user.username && <h6><strong>created by: </strong>{ this.props.user.username }</h6> }
-        <button onClick={ this.deleteList } className="absolute z-10 bottom-5 right-5 px-4 py-2 text-red-400 border border-red-400 hover:bg-red-400 hover:text-white font-bold rounded-lg transition-all">delete</button>
+        {this.props.user.username && <h6><strong>Created by: </strong>{ this.props.user.username }</h6> }
+        <button onClick={ this.deleteList } className="absolute z-10 bottom-5 right-5 px-4 py-2 text-red-400 border border-red-400 hover:bg-red-400 hover:text-white font-bold rounded-lg transition-all">Delete</button>
       </div>
     )
   }

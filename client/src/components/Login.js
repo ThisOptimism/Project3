@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { login } from '../services/auth';
+import { Link } from 'react-router-dom'
 
 export default class Login extends Component {
 
@@ -38,7 +39,7 @@ export default class Login extends Component {
     return (
       <div className="flex flex-col items-center justify-around">
         <form className="flex flex-col justify-center items-center bg-white bg-opacity-70 w-96 min-w-min  mt-4 p-6 rounded shadow-2xl " onSubmit={ this.handleSubmit }>
-        <h2>Login</h2>
+        <h2 className="text-2xl mb-2">Login</h2>
         <input
             className="m-2 rounded-lg p-2 text-center"
             id="username"
@@ -62,6 +63,7 @@ export default class Login extends Component {
           {this.state.message && (
             <h3 className="text-red-700 text-center p-3">{this.state.message}</h3>
           )}
+        <p className="mt-2">Not got an account yet? <Link to="/signup" className="text-blue-800 underline">Sign Up</Link></p>
         </form>
       </div>
     )
