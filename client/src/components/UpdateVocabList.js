@@ -38,7 +38,7 @@ export default class UpdateVocabList extends Component {
     for (let i = 0; i < tarWords.length; i++) {
       words.push([natWords[i].value, tarWords[i].value])
     }
-    console.log(this.props.vocablist._id);
+    console.log(words);
 
     axios.post(`/api/vocabList/updateVocabList/${this.props.vocablist._id}`, {
       name: name.value,
@@ -47,7 +47,7 @@ export default class UpdateVocabList extends Component {
       words: words,
       createdBy: this.props.vocablist.createdBy
     })
-      .then(newList => console.log(newList.data))
+      .then(newList => console.log(newList))
       .catch(err => console.log(err))
 
 

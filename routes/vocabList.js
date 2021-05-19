@@ -53,15 +53,20 @@ router.put('/updateVocabList/:id', (req, res, next) => {
     targetLang,
     words
   } = req.body;
+  console.log(req.body);
+
   VocabList.findByIdAndUpdate(req.params.id, {
-      name: name,
-      nativeLang: nativeLang,
-      targetLang: targetLang,
-      words: words
+      $set: {
+        name: name,
+        nativeLang: nativeLang,
+        targetLang: targetLang,
+        words: words
+      }
     }, {
       new: true
     })
     .then(vocabListToUpdate => {
+      res.send(vocabListToUpdate)
       res.status(200).json(vocabListToUpdate)
     })
     .catch(err => res.json(err))
