@@ -58,7 +58,7 @@ export default class AddText extends Component {
 
           <div className="flex flex-col mb-5">
             <legend className="text-center text-2xl font-semibold">Add a new text</legend>
-            <button onClick={ this.closeForm } className="absolute top-5 text-xl right-5 w-10 h-10 rounded-full border">✖</button>
+            <button onClick={ this.closeForm } className="absolute top-5 text-xl right-5 w-10 h-10 rounded-full">✖</button>
           </div>
           <div className="flex flex-col mb-5">
             <label htmlFor="title"><strong>Title:</strong> </label>

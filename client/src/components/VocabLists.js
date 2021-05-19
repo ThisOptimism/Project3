@@ -28,8 +28,8 @@ export default class VocabLists extends Component {
         <Link to={ `/vocablist/${vocablist._id}` }>
           <div className="w-90 mb-10 bg-gray-200 bg-opacity-20 rounded-lg p-5">
             <h3 className="text-lg font-bold">{ vocablist.name }</h3>
-            <span>{ vocablist.nativeLang }</span><span>{ vocablist.targetLang }</span>
-            <h6><strong>created by: </strong></h6>
+            <span>{ vocablist.nativeLang }</span> – <span>{ vocablist.targetLang }</span>
+            <h6><strong>created by: {vocablist.createdBy.username}</strong></h6>
           </div>
         </Link>
       )
@@ -37,7 +37,7 @@ export default class VocabLists extends Component {
 
     return (
       <>
-      <h1 className="text-center text-white text-3xl mb-5">All Vocablists</h1>
+      <h1 className="text-center text-white text-3xl mb-5">All Vocab Lists</h1>
         <div className="grid grid-cols-3 gap-x-10">
           { VocabList }
         </div>

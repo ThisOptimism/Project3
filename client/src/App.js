@@ -28,7 +28,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <body class=" flex flex-col min-h-screen 
+      <body className=" flex flex-col min-h-screen 
         bg-gradient-to-r 
         from-blue-400 
         to-green-800 
@@ -36,7 +36,7 @@ class App extends React.Component {
         animate-gradient-xy
       ">
         <NavBar user={ this.state.user } setUser={ this.setUser } />
-        <main class="flex-grow">
+        <main className="flex-grow">
           <Switch>
             <Route exact path='/' component={ Home } user={ this.state.user } />
             <Route exact path='/signup' render={ props => <Signup setUser={ this.setUser } { ...props } /> } />
@@ -49,6 +49,7 @@ class App extends React.Component {
             <Route exact path='/vocablist/:id/flashcards' render={ props => <FlashCardGame user={ this.state.user } { ...props } /> } />
             <Route path="/404" component={ NotFound } />
             <Redirect to="/404" />
+
           </Switch>
         </main>
         {/* <Footer /> */}
