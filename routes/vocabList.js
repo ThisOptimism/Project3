@@ -52,6 +52,7 @@ router.put('/updateVocabList/:id', (req, res, next) => {
     .then(vocabListToUpdate => {
       res.status(200).json(vocabListToUpdate)
     })
+    .catch(err => res.json(err))
 })
 
 router.put('/addWord/:listId', (req, res, next) => {
