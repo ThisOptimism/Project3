@@ -21,7 +21,9 @@ router.post('/addVocabList', (req, res, next) => {
     createdBy: createdBy
   })
     .then(response => {
-      res.status(200).json(response.data)
+      res.status(200).json({
+        successMessage: 'New list created.'
+      })
     })
     .catch(err => {
       res.json(err)
@@ -57,7 +59,7 @@ router.put('/addWord/:listId', (req, res, next) => {
 
   VocabList.findByIdAndUpdate(req.params.listId, { $push: { words: req.body.word } }, { new: true })
     .then(listWithNewWord => {
-      res.status(200).json({ message: 'Word successfully added.', newList: listWithNewWord })
+      res.status(200).json({ successMessage: 'Word successfully added.', newList: listWithNewWord })
     })
 })
 

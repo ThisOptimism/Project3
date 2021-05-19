@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { signup } from '../services/auth';
+import { Link } from 'react-router-dom';
 
 export default class Signup extends Component {
 
@@ -94,6 +95,7 @@ export default class Signup extends Component {
           { this.state.message && (
             <h3 className="text-red-700 text-center p-3">{ this.state.message }</h3>
           ) }
+        <p className="mt-2">Already have an account? <Link to="/login" className="text-blue-800 underline">Login</Link></p>
         </form>
       </div>
     )
