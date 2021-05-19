@@ -52,7 +52,7 @@ class App extends React.Component {
 
           </Switch>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     )
   }

@@ -104,8 +104,10 @@ export default class AddText extends Component {
 
   render() {
     return (
+      <div className="flex justify-end">
       <div>
-        <button className="bg-gray-900 text-white font-bold py-4 px-8 shadow-md rounded-md" onClick={ e => this.setState({ showForm: !this.state.showForm }) }>Add Text</button>
+        <button className="bg-gray-100 hover:bg-blue-900 hover:text-white duration-500 text-black py-2 px-8 shadow-md rounded-md mr-36" onClick={ e => this.setState({ showForm: !this.state.showForm }) }>Add Text</button>
+        </div>
         {this.state.showForm && this.form() }
       </div>
     )
