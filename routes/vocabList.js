@@ -89,6 +89,7 @@ router.get('/myVocabLists/:userId', (req, res, next) => {
   VocabList.find({
     createdBy: req.params.userId
   })
+  .populate('createdBy')
     .then(vocabLists => {
       if (vocabLists == null) {
         return res.status(400).json({
@@ -105,6 +106,7 @@ router.get('/myVocabLists/:userId', (req, res, next) => {
 
 router.get('/allVocabList', (req, res, next) => {
   VocabList.find()
+    .populate('createdBy')
     .then(vocabList => {
       res.json(vocabList);
     })
