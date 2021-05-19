@@ -105,6 +105,7 @@ router.get('/myVocabLists/:userId', (req, res, next) => {
 
 router.get('/allVocabList', (req, res, next) => {
   VocabList.find()
+    .populate('createdBy')
     .then(vocabList => {
       res.json(vocabList);
     })
