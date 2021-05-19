@@ -90,14 +90,14 @@ router.put('/updateText/:id', (req, res, next) => {
 
 router.get('/findText/:id', (req, res, next) => {
     Text.findById(req.params.id)
-        .then(textId => {
-            if (textId == null) {
+        .then(text => {
+            if (text == null) {
                 return res.status(400).json({
                     message: 'This text has not been published yet'
                 })
             } else {
-                res.status(200).json(textId)
-                // is the textId the value returned from the database ?
+                console.log(text);
+                res.status(200).json(text)
             }
         })
         .catch(err => {
