@@ -14,10 +14,13 @@ router.post('/addText', (req, res, next) => {
         author,
         relaseDate,
         rating,
-        difficulty,
-        readingTime
     } = req.body
     //if statement to check the user input (if a field is empty ?) ?
+    //work out reading difficulty:
+
+    const difficulty = calcReadability(body);
+    const readingTime = calcReadingTime(body);
+
     Text.create({
             title: title,
             genre: genre,
@@ -31,9 +34,12 @@ router.post('/addText', (req, res, next) => {
             readingTime: readingTime
         })
         .then(response => {
+            console.log(response)
             res.status(202).json(response)
         })
         .catch(err => {
+            console.log(err);
+            
             res.json(err)
         })
 })
@@ -117,5 +123,32 @@ router.get('/allText', (req, res, next) => {
         })
 })
 
+function calcReadability(text) {
+  const words = text.split(' ').length;
+  const letters = text.replace(/[^a-zA-Z]/g,'').length
+  const sentences = text.split(/[.!?]/).length -1
+  
+  const result = Math.round(0.0588 * ((letters/words)*100) - 0.296 * ((sentences / words) * 100) - 15.8);
+  switch(true) {
+         case (result < 5):
+           return 'Beginner';
+          break;
+         case (result < 7):
+           return 'Intermediate';
+                break;
+         case (result < 9):
+           return 'Upper Intermediate';
+                break;
+         default:
+           return 'Advanced';
+         
+         }
+} // algorithm is taken from the Coleman-Liau index, then generalised to give beginner - advanced levels
+
+function calcReadingTime(text) {
+    const wordCount = text.split(' ').length
+    const result = Math.round(wordCount/140)
+    return result < 1 ? 1 : result //not super scientific, but gives an idea of a reading time for a slow reader (language learner)
+}
 
 module.exports = router;
