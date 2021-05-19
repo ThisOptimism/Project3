@@ -17,8 +17,6 @@ export default class SpecificText extends Component {
   }
   componentDidMount = () => {
 
-
-
     axios.get(`/api/textList/findText/${this.props.match.params.id}`)
       .then(text => {
         // console.log(text.data);
@@ -32,6 +30,7 @@ export default class SpecificText extends Component {
       .catch(err => console.log(err)
       )
   }
+  
   makeTextClickable = (text) => {
     return text.split(' ')
       .map(word => {

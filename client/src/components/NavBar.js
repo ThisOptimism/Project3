@@ -11,7 +11,7 @@ export default function NavBar(props) {
 
   return (
     <header >
-      <Link to='/'><h1 class="text-4xl">LingoFish</h1></Link>
+      <Link to={ props.user ? '/dashboard' : '/'}><h1 class="text-4xl">LingoFish</h1></Link>
       <ul>
         { props.user ? (
           <div className="menu">
