@@ -20,7 +20,6 @@ export default class UpdateVocabList extends Component {
 
   handleChangeNativeLang = e => {
     console.log(e.value);
-    
     this.setState({
       nativeLang: e.value
     })
@@ -34,26 +33,30 @@ export default class UpdateVocabList extends Component {
   updateList = e => {
     e.preventDefault()
     const { name, nativeLang, targetLang, tarWords, natWords } = e.target
+
     let words = [];
-    for (let i = 0; i<tarWords.length;i++) {
+    for (let i = 0; i < tarWords.length; i++) {
       words.push([natWords[i].value, tarWords[i].value])
     }
+    console.log(this.props.vocablist._id);
+
     axios.post(`/api/vocabList/updateVocabList/${this.props.vocablist._id}`, {
-      name: name,
-      nativeLang: nativeLang,
-      targetLang: targetLang,
-      words: words
+      name: name.value,
+      nativeLang: targetLang.value || this.state.nativeLang,
+      targetLang: nativeLang.value || this.state.targetLang,
+      words: words,
+      createdBy: this.props.vocablist.createdBy
     })
-    .then(newList => console.log(newList))
-    .catch(err => console.log(err))
-   
-    
+      .then(newList => console.log(newList.data))
+      .catch(err => console.log(err))
+
+
   }
   render() {
-   
+
     const Words = this.state.words.map(word => {
       return (
-          <UpdateWords word={word} />
+        <UpdateWords word={ word } />
       )
     })
 
@@ -66,7 +69,7 @@ export default class UpdateVocabList extends Component {
 
     return (
       <div className="fixed flex justify-center items-center h-screen top-0 right-0 z-10 left-0 bottom-0 bg-black bg-opacity-60 transition-opacity">
-        <form onSubmit={e => this.updateList(e)} className="p-10 bg-white rounded-lg relative">
+        <form onSubmit={ e => this.updateList(e) } className="p-10 bg-white rounded-lg relative">
           <div>
             <button onClick={ this.props.setUpdateForm } className="absolute top-5 text-xl right-5 w-10 h-10 rounded-full">✖</button>
             <legend className="mb-5 text-lg font-bold text-center">Edit Vocab list</legend>
@@ -80,7 +83,6 @@ export default class UpdateVocabList extends Component {
             <label className="font-bold" htmlFor="nativeLang">Choose a native language:</label>
             <Select id='nativeLang'
               name="nativeLang"
-              value={this.state.nativeLang}
               options={ langOptions }
               onChange={ e => this.handleChangeNativeLang(e) } />
           </div>
@@ -94,7 +96,7 @@ export default class UpdateVocabList extends Component {
           <div className="flex flex-col border mb-5">
             <span className="text-center text-lg font-bold">Words</span>
             <label className="text-center mb-2 text-md" htmlFor="words">{ this.props.vocablist.nativeLang } – { this.props.vocablist.targetLang }</label>
-            {Words} 
+            { Words }
           </div>
           <button className="w-full py-4 px-2 bg-gray-800 text-white mx-auto block font-bold">
             Update

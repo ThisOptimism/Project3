@@ -14,12 +14,12 @@ router.post('/addVocabList', (req, res, next) => {
     createdBy
   } = req.body
   VocabList.create({
-    name: name,
-    nativeLang: nativeLang,
-    targetLang: targetLang,
-    words: words,
-    createdBy: createdBy
-  })
+      name: name,
+      nativeLang: nativeLang,
+      targetLang: targetLang,
+      words: words,
+      createdBy: createdBy
+    })
     .then(response => {
       res.status(200).json({
         successMessage: 'New list created.'
@@ -47,8 +47,20 @@ router.delete('/deleteVocabList/:id', (req, res, next) => {
 //to update a vocabulary list
 
 router.put('/updateVocabList/:id', (req, res, next) => {
-  const { name, nativeLang, targetLang, words } = req.body;
-  VocabList.findByIdAndUpdate(req.params.id, { name, nativeLang, targetLang, words }, { new: true })
+  const {
+    name,
+    nativeLang,
+    targetLang,
+    words
+  } = req.body;
+  VocabList.findByIdAndUpdate(req.params.id, {
+      name: name,
+      nativeLang: nativeLang,
+      targetLang: targetLang,
+      words: words
+    }, {
+      new: true
+    })
     .then(vocabListToUpdate => {
       res.status(200).json(vocabListToUpdate)
     })
@@ -58,9 +70,18 @@ router.put('/updateVocabList/:id', (req, res, next) => {
 router.put('/addWord/:listId', (req, res, next) => {
   console.log(req.body);
 
-  VocabList.findByIdAndUpdate(req.params.listId, { $push: { words: req.body.word } }, { new: true })
+  VocabList.findByIdAndUpdate(req.params.listId, {
+      $push: {
+        words: req.body.word
+      }
+    }, {
+      new: true
+    })
     .then(listWithNewWord => {
-      res.status(200).json({ successMessage: 'Word successfully added.', newList: listWithNewWord })
+      res.status(200).json({
+        successMessage: 'Word successfully added.',
+        newList: listWithNewWord
+      })
     })
 })
 
@@ -90,9 +111,9 @@ router.get('/myVocabLists/:userId', (req, res, next) => {
   console.log(req.params.userId);
 
   VocabList.find({
-    createdBy: req.params.userId
-  })
-  .populate('createdBy')
+      createdBy: req.params.userId
+    })
+    .populate('createdBy')
     .then(vocabLists => {
       if (vocabLists == null) {
         return res.status(400).json({
