@@ -150,9 +150,10 @@ export default class SpecificText extends Component {
     ]
 
     return (
+      <div className="min-h-full w-full bg-white pt-16 pb-6">
 
-      <div className="mx-auto lg:ml-52  text-center mt-16 pb-20 max-w-screen-md bg-white bg-opacity-75 rounded-md mb-6">
-        <div className="bg-opacity-100 bg-gray-200 rounded-t-md	bg-white p-10 flex flex-col w-full">
+      <div className="mx-auto lg:ml-52  text-center  pb-20 max-w-screen-md bg-blue-100 bg-opacity-75 rounded-md ">
+        <div className="bg-opacity-100 bg-blue-200 rounded-t-md	bg-white p-10 flex flex-col w-full">
          <h1 className="text-3xl pt-7">{ this.state.clickableTitle }</h1>
           <p className="text-xl">{text.author}</p>
          <div className="flex w-full pt-3">
@@ -175,6 +176,7 @@ export default class SpecificText extends Component {
           {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
         </div>
       </div>
+    </div>
     )
   }
 }
