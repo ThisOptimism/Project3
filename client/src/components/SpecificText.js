@@ -14,7 +14,8 @@ export default class SpecificText extends Component {
     wordToBeTranslated: '',
     wordTranslated: '',
     targetLang: 'EN',
-    sourceLang: ''
+    sourceLang: '',
+    text: '',
   }
   componentDidMount = () => {
 
@@ -23,6 +24,7 @@ export default class SpecificText extends Component {
         // console.log(text.data);
         const clickableText = this.makeTextClickable(text.data.body)
         this.setState({
+          text: text.data,
           textTitle: text.data.title,
           clickableTitle: this.makeTextClickable(text.data.title),
           sourceLang: text.data.sourceLang,
@@ -109,12 +111,17 @@ export default class SpecificText extends Component {
 
     return (
       <div class="mx-auto lg:ml-52 p-10 text-center mt-16 pb-20 max-w-screen-md bg-white bg-opacity-75 rounded-md">
-        <div className="flex-col flex items-center">
+        <div>
+          <h1 class="text-3xl py-7">{ this.state.clickableTitle }</h1>
+          <p>{this.state.text.author}</p>
+          <p>Reading time: Approx. {this.state.text.readingTime} mins</p>
+          <p>Reading difficulty: {this.state.text.difficulty}</p>
+        </div>        <div className="flex-col flex items-center">
           <label htmlFor="targetLangSelect">Translate to</label>
           <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
         </div>
-        <h1 class="text-3xl py-7">{ this.state.clickableTitle }</h1>
-        <p class="text-lg">{ this.state.textBody }</p>
+
+        <p class="text-lg"> { this.state.textBody } </p>
         {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
       </div>
     )
