@@ -29,8 +29,6 @@ export default class VocabListDiv extends Component {
   }
 
   render() {
-    console.log(this.props.vocablist);
-
     return (
       <div className="w-90 mx-10 mb-20 bg-gray-100 rounded-lg p-5 relative">
         <Link to={ `/vocablist/${this.props.vocablist._id}` }>
@@ -42,7 +40,7 @@ export default class VocabListDiv extends Component {
           <button onClick={ e => this.setState({ showUpdateForm: !this.state.showUpdateForm }) } className="mr-4 py-2 px-4 text-white rounded-lg font-bold bg-gray-800">Update</button>
           <button onClick={ this.deleteList } className="px-4 py-2 text-red-400 border border-red-400 hover:bg-red-400 hover:text-white font-bold rounded-lg transition-all">delete</button>
         </div>
-        {this.state.showUpdateForm && <UpdateVocabList setUpdateForm={this.setUpdateForm} vocablist={ this.props.vocablist } /> }
+        {this.state.showUpdateForm && <UpdateVocabList setUpdateForm={this.setUpdateForm} getVocabList={this.props.getVocabList} vocablist={ this.props.vocablist } /> }
       </div>
     )
   }

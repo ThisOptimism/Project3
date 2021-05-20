@@ -14,12 +14,12 @@ router.post('/addVocabList', (req, res, next) => {
     createdBy
   } = req.body
   VocabList.create({
-      name: name,
-      nativeLang: nativeLang,
-      targetLang: targetLang,
-      words: words,
-      createdBy: createdBy
-    })
+    name: name,
+    nativeLang: nativeLang,
+    targetLang: targetLang,
+    words: words,
+    createdBy: createdBy
+  })
     .then(response => {
       res.status(200).json({
         successMessage: 'New list created.'
@@ -53,8 +53,6 @@ router.put('/updateVocabList/:id', (req, res, next) => {
     targetLang,
     words
   } = req.body;
-  console.log(req.body);
-
   VocabList.findByIdAndUpdate(req.params.id, {
       $set: {
         name: name,
@@ -66,7 +64,7 @@ router.put('/updateVocabList/:id', (req, res, next) => {
       new: true
     })
     .then(vocabListToUpdate => {
-      res.send(vocabListToUpdate)
+      console.log(vocabListToUpdate)
       res.status(200).json(vocabListToUpdate)
     })
     .catch(err => res.json(err))
@@ -76,12 +74,12 @@ router.put('/addWord/:listId', (req, res, next) => {
   console.log(req.body);
 
   VocabList.findByIdAndUpdate(req.params.listId, {
-      $push: {
-        words: req.body.word
-      }
-    }, {
-      new: true
-    })
+    $push: {
+      words: req.body.word
+    }
+  }, {
+    new: true
+  })
     .then(listWithNewWord => {
       res.status(200).json({
         successMessage: 'Word successfully added.',
@@ -113,11 +111,9 @@ router.get('/findVocabList/:id', (req, res, next) => {
 // to get all vocab lists from a specific user
 
 router.get('/myVocabLists/:userId', (req, res, next) => {
-  console.log(req.params.userId);
-
   VocabList.find({
-      createdBy: req.params.userId
-    })
+    createdBy: req.params.userId
+  })
     .populate('createdBy')
     .then(vocabLists => {
       if (vocabLists == null) {

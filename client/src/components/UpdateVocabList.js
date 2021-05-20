@@ -38,25 +38,28 @@ export default class UpdateVocabList extends Component {
     for (let i = 0; i < tarWords.length; i++) {
       words.push([natWords[i].value, tarWords[i].value])
     }
-    console.log(words);
 
-    axios.post(`/api/vocabList/updateVocabList/${this.props.vocablist._id}`, {
+    console.log('input values from form ' + name.value + nativeLang.value + targetLang.value + words)
+    axios.put(`/api/vocabList/updateVocabList/${this.props.vocablist._id}`, {
       name: name.value,
       nativeLang: targetLang.value || this.state.nativeLang,
       targetLang: nativeLang.value || this.state.targetLang,
       words: words,
-      createdBy: this.props.vocablist.createdBy
     })
-      .then(newList => console.log(newList))
+      .then(newList => {
+        console.log(newList.data)
+        this.props.getVocabList();
+        this.props.setUpdateForm();
+      })
       .catch(err => console.log(err))
 
 
   }
   render() {
 
-    const Words = this.state.words.map(word => {
+    const Words = this.state.words.map((word, index) => {
       return (
-        <UpdateWords word={ word } />
+        <UpdateWords key={index} word={ word } />
       )
     })
 
