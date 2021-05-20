@@ -114,4 +114,11 @@ router.delete('/logout', (req, res) => {
   });
 })
 
+router.get('/getuser/:id', (req, res, next) => {
+  const id = req.params.id
+  User.findById(id)
+  .then(user => res.status(200).json(user))
+  .catch(err => next(err))
+})
+
 module.exports = router;
