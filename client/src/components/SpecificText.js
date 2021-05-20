@@ -148,7 +148,7 @@ export default class SpecificText extends Component {
               {/* <img src={text.img} alt={text.title}/> */}
               <p className="p-2">Reading time: Approx. {text.readingTime} mins</p>
               <p className="p-2">Reading difficulty: {text.difficulty}</p>
-              <button className="p-2" onClick={this.toggleFavorite} >{this.state.inFavorites ? 'Remove from Favourites' : 'Add to Favourites'}</button>
+              <button className="p-2" onClick={this.toggleFavorite} className={this.state.inFavorites ? 'border-blue-800 border-2 w-min px-4 m-auto rounded-full bg-blue-500 text-white mt-4' : 'border-blue-800 border-2 w-min px-4 m-auto rounded-full bg-gray-200 mt-4'}>{this.state.inFavorites ? 'Added to Favourites' : 'Add to Favourites'}</button>
 
             </div>
             <div className="flex-col flex  justify-center items-center w-1/2">

@@ -131,7 +131,7 @@ class SideBar extends React.Component {
 // /
 // class="absolute right-10 top-1/4 text-left border-4 border-black p-10 h-auto rounded-md"
     return (
-      <aside className="fixed w-screen left-0 md:left-auto md:w-1/3 md:right-20 top-1/4  h-auto rounded-md  flex flex-col text-center p-6 bg-gray-100 rounded-md">
+      <aside className="fixed w-screen left-0 md:left-auto md:w-1/3 md:right-20 top-1/4  h-auto rounded-md  flex flex-col text-center p-6 bg-gray-100 rounded-md aside">
         <button onClick={this.props.showSideBar} className="text-white  py-1 px-2 rounded self-end">✖️</button>
 
         { this.state.successMessage &&
