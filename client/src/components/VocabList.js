@@ -33,7 +33,7 @@ export default class VocabList extends Component {
   render() {
     return (
       <div className="relative">
-        <h3 className="text-3xl text-center mb-5 font-bold tracking-wide pb-1">MY VOCABLISTS 📚</h3>
+        <h3 className="text-3xl ml-5 mb-5 font-bold tracking-wide pb-1">My vocab lists:</h3>
         <div className="flex flex-col">
           { this.vocabLists() }
         </div>

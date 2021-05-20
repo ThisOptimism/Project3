@@ -30,7 +30,7 @@ export default class VocabListDiv extends Component {
 
   render() {
     return (
-      <div className="w-90 mx-10 mb-20 bg-gray-100 rounded-lg p-5 relative">
+      <div className="w-90 mx-10 mb-20 bg-gray-100 border-2 rounded-lg p-5 relative">
         <Link to={ `/vocablist/${this.props.vocablist._id}` }>
           <h3 className="text-lg font-bold">{ this.props.vocablist.name }</h3>
         </Link>
