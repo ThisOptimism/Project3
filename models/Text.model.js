@@ -25,7 +25,8 @@ const TextSchema = new Schema({
   releaseDate: String,
   rating: Number,
   difficulty: String,
-  readingTime: Number
+  readingTime: Number,
+  img: String
 })
 
 
