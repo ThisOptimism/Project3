@@ -122,6 +122,16 @@ router.get('/allText', (req, res, next) => {
             res.status(500).json(err)
         })
 })
+router.get('/randomtext', (req, res, next) => {
+    Text.find()
+        .then(textList => {
+            const randomNumber = Math.floor(Math.random() * textList.length)
+            res.json(textList[randomNumber]);
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
+})
 
 function calcReadability(text) {
   const words = text.split(' ').length;
