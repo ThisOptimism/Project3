@@ -16,7 +16,8 @@ export default class LibraryPage extends Component {
     name: '',
     author: '',
     targetLang: '',
-    type: ''
+    type: '',
+    loading: true
   }
 
   componentDidMount = () => {
@@ -29,7 +30,8 @@ export default class LibraryPage extends Component {
         response => {
           console.log(response.data)
           this.setState({
-            texts: response.data
+            texts: response.data,
+            loading: false
           })
         }
       )
@@ -83,6 +85,10 @@ export default class LibraryPage extends Component {
       {value: 'article', label : 'Article'}
     ]
 
+    if(this.state.loading){
+      return (<div></div>)
+    } else {
+
     return (
       <>
       <div className="min-h-full bg-blue-400">
@@ -124,6 +130,6 @@ export default class LibraryPage extends Component {
         </div>
         </div>
       </>
-    )
+    )}
   }
 }
