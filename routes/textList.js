@@ -14,13 +14,14 @@ router.post('/addText', (req, res, next) => {
         author,
         relaseDate,
         rating,
-        imgUrl,
+        imgUrl
     } = req.body
     //if statement to check the user input (if a field is empty ?) ?
     //work out reading difficulty:
 
     const difficulty = calcReadability(body);
     const readingTime = calcReadingTime(body);
+
 
     Text.create({
             title: title,
