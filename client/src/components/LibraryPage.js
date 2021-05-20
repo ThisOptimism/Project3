@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-// import sampleText from '../sampleText';
 import TextDiv from './TextDiv';
 import AddText from './AddText';
 import Select from 'react-select'
-import glass from '../images/glass.png'
+import SearchIcon from '@material-ui/icons/Search';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 export default class LibraryPage extends Component {
@@ -13,7 +15,7 @@ export default class LibraryPage extends Component {
     texts: [],
     name: '',
     author: '',
-    targetLang: '',//set the state manually
+    targetLang: '',
     type: ''
   }
 
@@ -28,9 +30,6 @@ export default class LibraryPage extends Component {
           console.log(response.data)
           this.setState({
             texts: response.data
-            // map(text => <TextDiv key={text._id} text={text}/>)
-            //It it difficult to filter over an array with a TextDiv component
-            //The original array is composed of object - the key are more easily accessible
           })
         }
       )
@@ -62,9 +61,10 @@ export default class LibraryPage extends Component {
       return (`${element.title.toLowerCase()} ${element.author.toLowerCase()}`.includes(this.state.name.toLowerCase()))
       && (element.sourceLang === this.state.targetLang || !this.state.targetLang)
       && (element.type === this.state.type || !this.state.type)
-
-     
     })
+
+
+    
     console.log(filterredTexts.length)
     let mappedTexts = filterredTexts.map(text => <TextDiv key={ text._id } text={ text } />)
 
@@ -88,15 +88,21 @@ export default class LibraryPage extends Component {
       <div className="min-h-full bg-blue-400">
         <div className="w-3/12 mx-40">
         <form>
-          {/* <label className="block text-sm font-medium">
-            Title / Author:
-          </label> */}
-          <div className="pt-6 flex justify-between">
-          {/* <img className="w-11"/> */}
-          <input className='w-96 h-9 text-3xl' type="text" placeholder="Type in for title / author"  img src={glass} alt
-            value={ this.state.name }
-            onChange={ this.handleQueryChange }/>
-          </div>
+        <div className="pt-6 flex justify-between">
+        <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
+        <Input
+          className='w-96 h-9 text-3xl'
+          id="input-with-icon-adornment"
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+          placeholder="Type in for title / author"
+          value={ this.state.name }
+          onChange={ this.handleQueryChange }
+        />
+        </div>
             <div className="h-6 flex justify-between pt-8" >
             <div>
             <label htmlFor="targetLangSelect">Choose a language</label>
@@ -112,6 +118,9 @@ export default class LibraryPage extends Component {
         {this.props.user && <AddText getText={ this.getAllTexts } /> }
         <div className="flex flex-wrap justify-around">
           { mappedTexts }
+          <div className="mt-16 text-3xl">
+          { filterredTexts.length === 0 && <p>There is no result matching your request. Please enter a new title / author</p> }
+          </div>
         </div>
         </div>
       </>
