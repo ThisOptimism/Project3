@@ -16,8 +16,21 @@ export default class SpecificText extends Component {
     targetLang: 'EN',
     sourceLang: '',
     text: '',
+    inFavorites: '',
   }
   componentDidMount = () => {
+
+    if(this.props.user.favoriteText.includes(this.props.match.params.id)) {
+      this.setState({
+        inFavorites: true,
+      })
+      
+    } else {
+      this.setState({
+        inFavorites: false
+      })
+      
+    }
 
     axios.get(`/api/textList/findText/${this.props.match.params.id}`)
       .then(text => {
@@ -82,6 +95,18 @@ export default class SpecificText extends Component {
     })
   }
 
+  toggleFavorite= () => {
+
+    let addOrRemove = this.state.inFavorites ? 'remove' : 'add';
+
+    axios.post(`/api/textList/toggleFavorite/${this.state.text._id}`, {addOrRemove})
+    .then(response => console.log(response))
+
+    this.setState({
+      inFavorites: !this.state.inFavorites
+    })
+  }
+
   prepWordForApi(word) {
     console.log('word: ', word);
     // console.log(word[word.length-3]);
@@ -125,6 +150,7 @@ export default class SpecificText extends Component {
           <label htmlFor="targetLangSelect">Translate to</label>
           <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
         </div>
+        <button onClick={this.toggleFavorite} >{this.state.inFavorites ? 'Remove from Favourites' : 'Add to Favourites'}</button>
 
         <p class="text-lg"> { this.state.textBody } </p>
         {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
