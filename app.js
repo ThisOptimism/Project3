@@ -15,6 +15,7 @@ const app = express();
 require("./config")(app);
 
 
+
 // session configuration
 
 const session = require('express-session');
@@ -113,6 +114,8 @@ app.use("/api/textList", text)
 
 const vocabList = require("./routes/vocabList");
 app.use("/api/vocabList", vocabList)
+
+app.use('/api/imageUpload', require('./routes/file-upload.routes'));
 
 
 

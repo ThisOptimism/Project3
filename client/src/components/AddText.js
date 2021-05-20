@@ -1,11 +1,13 @@
 import axios from 'axios'
 import React, { Component } from 'react';
 import Select from 'react-select';
+import service from '../services/imgUpload';
 
 export default class AddText extends Component {
   state = {
     showForm: false,
     genre: [],
+    imgUrl: ''
   }
 
   closeForm = () => {
@@ -16,7 +18,8 @@ export default class AddText extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title, author, releaseDate, type, genre, body } = e.target;
+      
+    const { title, author, releaseDate, type, genre, body, imgUrl } = e.target;
     let selectedGenre = [];
     if (genre.length > 1) {
       genre.forEach(genre => {
@@ -30,7 +33,8 @@ export default class AddText extends Component {
       releaseDate: new Date(releaseDate.value),
       type: type.value,
       body: body.value,
-      genre: selectedGenre
+      genre: selectedGenre,
+      imgUrl: this.state.imgUrl
     })
       .then(newText => {
         this.setState({
@@ -39,6 +43,27 @@ export default class AddText extends Component {
         this.props.getText()
       })
   }
+
+  handleFileUpload = e => {
+    console.log('The file to be uploaded is: ', e.target.files[0]);
+ 
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append('imgUrl', e.target.files[0]);
+ 
+    service
+      .handleUpload(uploadData)
+      .then(response => {
+        console.log('response is: ', response);
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state
+        this.setState({ imgUrl: response.secure_url });
+      })
+      .catch(err => {
+        console.log('Error while uploading the file: ', err);
+      });
+  };
+
 
   form = () => {
     const genreOptions = [{ value: 'drama', label: 'drama' }, { value: 'fiction', label: 'fiction' },
@@ -54,6 +79,7 @@ export default class AddText extends Component {
       <div className="flex justify-center overflow-y-scroll items-center fixed h-screen top-0 left-0 right-0 bottom-0 z-10 bg-black bg-opacity-60">
         <form
           onSubmit={ e => this.handleSubmit(e) }
+          enctype="multipart/form-data"
           className="flex flex-col w-96 py-10 px-10 text-left relative rounded-md bg-white">
 
           <div className="flex flex-col mb-5">
@@ -71,6 +97,10 @@ export default class AddText extends Component {
           <div className="flex flex-col mb-5">
             <label htmlFor="releaseDate"><strong>Release Date: </strong> </label>
             <input type="date" name="releaseDate" />
+          </div>
+          <div className="flex flex-col mb-5">
+            <label htmlFor="releaseDate"><strong>Cover: </strong> </label>
+            <input type="file" name="imgUrl" onChange={e => this.handleFileUpload(e)} />
           </div>
           <label htmlFor="type"><strong>Type:</strong></label>
           <div className="flex flex-col mb-5">

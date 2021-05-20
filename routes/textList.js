@@ -14,6 +14,7 @@ router.post('/addText', (req, res, next) => {
         author,
         relaseDate,
         rating,
+        imgUrl,
     } = req.body
     //if statement to check the user input (if a field is empty ?) ?
     //work out reading difficulty:
@@ -31,7 +32,8 @@ router.post('/addText', (req, res, next) => {
             relaseDate: relaseDate,
             rating: rating,
             difficulty: difficulty,
-            readingTime: readingTime
+            readingTime: readingTime,
+            imgUrl: imgUrl,
         })
         .then(response => {
             console.log(response)
