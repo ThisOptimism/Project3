@@ -35,8 +35,8 @@ export default class VocabListDetail extends Component {
 
   render() {
     return (
-      <div className="min-h-full bg-white">
-      <div className="text-center">
+      <div className="min-h-full bg-white " >
+      <div className={"text-center"  + (this.state.LearnModeActive ? " filter blur-lg" : "")}>
         <h1 className="font-bold text-4xl text-center mb-5 pt-10 text-yellow-500">{this.state.vocabListName}</h1>
         {this.state.vocabListWords.map((wordpairs, index) => {
           return (
