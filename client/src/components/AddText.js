@@ -98,8 +98,10 @@ export default class AddText extends Component {
             <label htmlFor="releaseDate"><strong>Release Date: </strong> </label>
             <input type="date" name="releaseDate" />
           </div>
-          <input type="file" name="imgUrl" onChange={e => this.handleFileUpload(e)} />
-
+          <div className="flex flex-col mb-5">
+            <label htmlFor="releaseDate"><strong>Cover: </strong> </label>
+            <input type="file" name="imgUrl" onChange={e => this.handleFileUpload(e)} />
+          </div>
           <label htmlFor="type"><strong>Type:</strong></label>
           <div className="flex flex-col mb-5">
             <Select
