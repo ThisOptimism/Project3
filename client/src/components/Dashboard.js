@@ -26,9 +26,12 @@ export default class Dashboard extends Component {
         })
       })
   }
+
   getUser = () => {
     axios.get(`/api/auth/getuser/${this.props.user._id}`)
       .then(user => {
+        console.log(user.data);
+        
         this.setState({
           user: user.data
         })
