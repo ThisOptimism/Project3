@@ -16,8 +16,21 @@ export default class SpecificText extends Component {
     targetLang: 'EN',
     sourceLang: '',
     text: '',
+    inFavorites: '',
   }
   componentDidMount = () => {
+
+    if(this.props.user.favoriteText.includes(this.props.match.params.id)) {
+      this.setState({
+        inFavorites: true,
+      })
+      
+    } else {
+      this.setState({
+        inFavorites: false
+      })
+      
+    }
 
     axios.get(`/api/textList/findText/${this.props.match.params.id}`)
       .then(text => {
@@ -82,6 +95,18 @@ export default class SpecificText extends Component {
     })
   }
 
+  toggleFavorite= () => {
+
+    let addOrRemove = this.state.inFavorites ? 'remove' : 'add';
+
+    axios.post(`/api/textList/toggleFavorite/${this.state.text._id}`, {addOrRemove})
+    .then(response => console.log(response))
+
+    this.setState({
+      inFavorites: !this.state.inFavorites
+    })
+  }
+
   prepWordForApi(word) {
     console.log('word: ', word);
     // console.log(word[word.length-3]);
@@ -114,20 +139,29 @@ export default class SpecificText extends Component {
 
     return (
 
-      <div class="mx-auto lg:ml-52 p-10 text-center mt-16 pb-20 max-w-screen-md bg-white bg-opacity-75 rounded-md">
-        <div>
-          <img src={text.img} alt={text.title}/>
-          <h1 class="text-3xl py-7">{ this.state.clickableTitle }</h1>
-          <p>{text.author}</p>
-          <p>Reading time: Approx. {text.readingTime} mins</p>
-          <p>Reading difficulty: {text.difficulty}</p>
-        </div>        <div className="flex-col flex items-center">
-          <label htmlFor="targetLangSelect">Translate to</label>
-          <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
-        </div>
+      <div className="mx-auto lg:ml-52  text-center mt-16 pb-20 max-w-screen-md bg-white bg-opacity-75 rounded-md mb-6">
+        <div className="bg-opacity-100 bg-gray-200 rounded-t-md	bg-white p-10 flex flex-col w-full">
+         <h1 className="text-3xl pt-7">{ this.state.clickableTitle }</h1>
+          <p className="text-xl">{text.author}</p>
+         <div className="flex w-full pt-3">
+            <div className="w-1/2 flex flex-col justify-around">
+              {/* <img src={text.img} alt={text.title}/> */}
+              <p className="p-2">Reading time: Approx. {text.readingTime} mins</p>
+              <p className="p-2">Reading difficulty: {text.difficulty}</p>
+              <button className="p-2" onClick={this.toggleFavorite} className={this.state.inFavorites ? 'border-blue-800 border-2 w-min px-4 m-auto rounded-full bg-blue-500 text-white mt-4' : 'border-blue-800 border-2 w-min px-4 m-auto rounded-full bg-gray-200 mt-4'}>{this.state.inFavorites ? 'Added to Favourites' : 'Add to Favourites'}</button>
 
-        <p class="text-lg"> { this.state.textBody } </p>
-        {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
+            </div>
+            <div className="flex-col flex  justify-center items-center w-1/2">
+              <label htmlFor="targetLangSelect">Translate to</label>
+              <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
+            </div>
+
+         </div>
+        </div>
+        <div className="p-10">
+          <p class="text-xl"> { this.state.textBody } </p>
+          {this.state.sideBar && <SideBar sourceLangWord={ this.state.wordToBeTranslated } targetLangWord={ this.state.wordTranslated } textTitle={ this.state.textTitle } sourceLang={ this.state.sourceLang } targetLang={ this.state.targetLang } user={ this.props.user } showSideBar={this.showSideBar} /> }
+        </div>
       </div>
     )
   }

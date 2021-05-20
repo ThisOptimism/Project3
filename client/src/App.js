@@ -41,15 +41,14 @@ class App extends React.Component {
             <Route exact path='/' component={ Home } user={ this.state.user } />
             <Route exact path='/signup' render={ props => <Signup setUser={ this.setUser } { ...props } /> } />
             <Route exact path='/login' render={ props => <Login setUser={ this.setUser } { ...props } /> } />
+            <Route exact path='/vocablist/:id' render={ props => <VocabListDetail { ...props } /> } />
             <ProtectedRoute path='/dashboard' user={ this.state.user } component={ Dashboard } redirectPath="/" />
             <Route exact path='/library' render={ props => <LibraryPage user={ this.state.user } setUser={ this.setUser } { ...props } /> } />
             <Route exact path='/texts/:id' render={ props => <SpecificText user={ this.state.user } { ...props } /> } />
             <Route exact path='/vocablist' render={ props => <VocabLists user={ this.state.user } { ...props } /> } />
-            <Route exact path='/vocablist/:id' render={ props => <VocabListDetail { ...props } /> } />
             <Route exact path='/vocablist/:id/flashcards' render={ props => <FlashCardGame user={ this.state.user } { ...props } /> } />
             <Route path="/404" component={ NotFound } />
             <Redirect to="/404" />
-
           </Switch>
         </main>
         {/* <Footer /> */}

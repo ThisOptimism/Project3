@@ -30,17 +30,30 @@ export default class VocabListDiv extends Component {
 
   render() {
     return (
-      <div className="w-90 mx-10 mb-20 bg-gray-100 border-2 rounded-lg p-5 relative">
+      <div className="mb-10 mx-10">
         <Link to={ `/vocablist/${this.props.vocablist._id}` }>
-          <h3 className="text-lg font-bold">{ this.props.vocablist.name }</h3>
+          <div className=" bg-gray-50 min-w-min border-2 rounded-lg p-5 pb-10 relative hover:bg-blue-100 transition-colors">
+            <h3 className="inline-block text-lg font-bold">{ this.props.vocablist.name }</h3><br />
+            <span className="italic" > {
+              this.props.vocablist.nativeLang
+            } </span> – <span className="italic">{ this.props.vocablist.targetLang }</span><br />
+            { this.props.user.username
+              && <h6 className="inline-block"><strong>created by: </strong>{ this.props.vocablist.createdBy.username }</h6> }
+          </div>
         </Link>
-        <span>{ this.props.vocablist.nativeLang }</span> – <span>{ this.props.vocablist.targetLang }</span>
-        {this.props.user.username && <h6><strong>created by: </strong>{ this.props.vocablist.createdBy.username }</h6> }
-        <div className="mt-5">
-          <button onClick={ e => this.setState({ showUpdateForm: !this.state.showUpdateForm }) } className="mr-4 py-2 px-4 text-white rounded-lg font-bold bg-gray-800">Update</button>
-          <button onClick={ this.deleteList } className="px-4 py-2 text-red-400 border border-red-400 hover:bg-red-400 hover:text-white font-bold rounded-lg transition-all">delete</button>
+        <div className="relative -top-5 left-5">
+          <button onClick={ e => this.setState({ showUpdateForm: !this.state.showUpdateForm }) }
+            className="mr-4 py-2 px-4 text-white rounded-lg font-bold bg-gray-800">Update</button>
+          <button onClick={ this.deleteList }
+            className="px-4 py-2 bg-white text-red-400 border border-red-400 hover:bg-red-400 hover:text-white font-bold rounded-lg transition-all">delete</button>
         </div>
-        {this.state.showUpdateForm && <UpdateVocabList setUpdateForm={this.setUpdateForm} getVocabList={this.props.getVocabList} vocablist={ this.props.vocablist } /> }
+        {
+          this.state.showUpdateForm
+          && <UpdateVocabList
+            setUpdateForm={ this.setUpdateForm }
+            getVocabList={ this.props.getVocabList }
+            vocablist={ this.props.vocablist } />
+        }
       </div>
     )
   }
