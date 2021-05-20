@@ -116,7 +116,7 @@ export default class LibraryPage extends Component {
         </form><br />
         </div>
         {this.props.user && <AddText getText={ this.getAllTexts } /> }
-        <div className="flex flex-wrap justify-around">
+        <div className="flex flex-col justify-around w-2/3 m-auto pt-10 ">
           { mappedTexts }
           <div className="mt-16 text-3xl">
           { filterredTexts.length === 0 && <p>There is no result matching your request. Please enter a new title / author</p> }

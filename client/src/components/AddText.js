@@ -80,7 +80,7 @@ export default class AddText extends Component {
         <form
           onSubmit={ e => this.handleSubmit(e) }
           enctype="multipart/form-data"
-          className="flex flex-col w-96 py-10 px-10 text-left relative rounded-md bg-white">
+          className="flex flex-col my-3 py-10 px-10 text-left relative rounded-md bg-white">
 
           <div className="flex flex-col mb-5">
             <legend className="text-center text-2xl font-semibold">Add a new text</legend>

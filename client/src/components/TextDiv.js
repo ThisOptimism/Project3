@@ -8,11 +8,12 @@ export default class TextDiv extends Component {
     console.log(text);
 
     return (
-      <div class="lg:max-w-md m-10 bg-gray-50 p-6 shadow-lg  bg-white bg-opacity-75 rounded-md">
-        <Link to={ `/texts/${text._id}` } ><h3 class="text-2xl">{ text.title }</h3> </Link>
-        <h4 class="text-xl">{ text.author }</h4>
-        <h4 class="italic p-1">{ text.genre.join('') }</h4>
-        <p>{ text.body.slice(0, 300) + '...' }</p>
+      <div class="m-4 bg-gray-50 p-6 shadow-xl  bg-white bg-opacity-75 ">
+        <Link to={`/texts/${text._id}`} ><h3 class="text-2xl">{text.title}</h3> </Link>
+        <h4 class="text-xl">{text.author}</h4>
+        <h4 class="italic p-1">{text.genre.join('')}</h4>
+        <p>{text.body.slice(0,300) + '...'}</p>
+
       </div>
     )
 
