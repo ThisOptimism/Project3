@@ -32,6 +32,7 @@ export default class Dashboard extends Component {
         <div>
         <h1 className="ml-5 font-bold text-3xl">Random Text:</h1>
           { this.state.randomText && <TextDiv text={ this.state.randomText } /> }
+          {/* user favorite Books */}
         </div>
         
       </div>
