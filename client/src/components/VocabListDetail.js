@@ -21,8 +21,15 @@ export default class VocabListDetail extends Component {
       })
       .catch(err => console.log(err))
   }
+
   componentDidMount = () => {
     this.getVocabListDetail()
+  }
+
+  closeWin = (e) => {
+    this.setState({
+      LearnModeActive: false
+    })
   }
 
 
@@ -38,8 +45,9 @@ export default class VocabListDetail extends Component {
             </div>
           )
         })}
-       <Link to={`/vocablist/${this.props.match.params.id}/flashcards`} > <button className="bg-green-600 hover:bg-yellow-500 duration-150 text-white px-3 py-2 rounded-lg mt-5">Learn this set!</button></Link>
+       <button onClick={e => this.setState({LearnModeActive: !this.state.LearnModeActive})} className="bg-green-600 hover:bg-yellow-500 duration-150 text-white px-3 py-2 rounded-lg mt-5">Learn this set!</button>
       </div>
+      {this.state.LearnModeActive && <FlashCardGame closeWin={this.closeWin} vocabList={this.props.vocablist} vocabListId={this.props.match.params.id}/>}
       </div>
     )
   }

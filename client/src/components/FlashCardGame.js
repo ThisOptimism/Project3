@@ -69,11 +69,13 @@ export default class FlashCardGame extends Component {
     
 
     return (
-      <div className="w-auto bg-white bg-opacity-80 p-3 text-center" >
-        <h1>FlashCards from <em>{this.state.vocabListObject.name}</em></h1> 
-        <label htmlFor="randomOrder">Random order:</label>
-        <input type="checkbox" name="randomOrder" checked={this.state.randomOrder} onClick={this.toggleRandom}/>
-        <FlashCard showNewWord={this.showNewWord} vocabListObject={this.state.vocabListObject} word={this.state.currentWord} />
+      <div className="fixed h-screen bg-black top-0 left-0 w-full bg-opacity-60 flex items-center justify-center">
+        <div className="w-auto bg-white bg-opacity-80 p-3 text-center border relative" >
+         <button onClick={e => this.props.closeWin(e)} className="absolute top-1 text-black right-1 text-3xl">✖</button>
+          <label htmlFor="randomOrder" className="font-bold text-lg mr-1">Random order: </label>
+          <input type="checkbox" name="randomOrder" checked={this.state.randomOrder} onClick={this.toggleRandom}/>
+          <FlashCard showNewWord={this.showNewWord} vocabListObject={this.state.vocabListObject} word={this.state.currentWord} />
+        </div>
       </div>
     )
   }
