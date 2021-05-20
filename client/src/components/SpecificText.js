@@ -98,6 +98,9 @@ export default class SpecificText extends Component {
     return word.toLowerCase().replace(/[.,/#!$%^&*;:{}=-_`~()]/g, "")
   }
   render() {
+
+    const text = this.state.text
+
     // console.log(this.props.match.params.id)
     const langOptions = [
       { value:'EN', label: 'English'},
@@ -110,12 +113,14 @@ export default class SpecificText extends Component {
     ]
 
     return (
+
       <div class="mx-auto lg:ml-52 p-10 text-center mt-16 pb-20 max-w-screen-md bg-white bg-opacity-75 rounded-md">
         <div>
+          <img src={text.img} alt={text.title}/>
           <h1 class="text-3xl py-7">{ this.state.clickableTitle }</h1>
-          <p>{this.state.text.author}</p>
-          <p>Reading time: Approx. {this.state.text.readingTime} mins</p>
-          <p>Reading difficulty: {this.state.text.difficulty}</p>
+          <p>{text.author}</p>
+          <p>Reading time: Approx. {text.readingTime} mins</p>
+          <p>Reading difficulty: {text.difficulty}</p>
         </div>        <div className="flex-col flex items-center">
           <label htmlFor="targetLangSelect">Translate to</label>
           <Select id="targetLangSelect" onChange={this.updateTargetLang} options={langOptions} defaultValue={langOptions[0]} className="w-28" default="FR"/>
