@@ -63,6 +63,7 @@ export default class VocabLists extends Component {
     } else {
     return (
       <>
+      <div className="min-h-full bg-white">
       <h1 className="text-center text-white text-3xl mb-5">All Vocab Lists</h1>
       <div className="mb-5 ml-2">
         <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
@@ -85,7 +86,7 @@ export default class VocabLists extends Component {
         <div className="mt-16 flex justify-center text-3xl">
           { filterredText.length === 0 && <p>There is no result matching your request. Please enter a new title / username</p> }
           </div>
-
+          </div>
       </>
     )}
   }

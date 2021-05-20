@@ -91,7 +91,7 @@ export default class LibraryPage extends Component {
 
     return (
       <>
-      <div className="min-h-full bg-blue-400">
+      <div className="min-h-full bg-white">
         <div className="w-3/12 mx-40">
         <form>
         <div className="pt-6 flex justify-between">
