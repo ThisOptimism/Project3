@@ -65,7 +65,7 @@ export default class VocabLists extends Component {
       <>
       <div className="min-h-full bg-white">
       <h1 className="text-center text-white text-3xl mb-5">All Vocab Lists</h1>
-      <div className="mb-5 ml-2">
+      <div className="mb-5 ml-14">
         <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
         <Input
           className='w-96 h-9 text-3xl'

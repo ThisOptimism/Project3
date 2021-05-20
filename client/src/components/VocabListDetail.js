@@ -25,16 +25,18 @@ export default class VocabListDetail extends Component {
 
   render() {
     return (
+      <div className="min-h-full bg-white">
       <div className="text-center">
-        <h1 className="font-bold text-2xl text-center mb-5">{this.state.vocabListName}</h1>
+        <h1 className="font-bold text-2xl text-center mb-5 pt-10 text-yellow-500">{this.state.vocabListName}</h1>
         {this.state.vocabListWords.map((wordpairs, index) => {
           return (
             <div key={index} className="text-lg leading-releaxed">
-            <span>{wordpairs[0]} – </span><span>{wordpairs[1]}</span>
+            <span className="text-blue-400">{wordpairs[0]} – </span><span className="text-green-600">{wordpairs[1]}</span>
             </div>
           )
         })}
-       <Link to={`/vocablist/${this.props.match.params.id}/flashcards`} > <button className="bg-green-700 text-white px-3 py-2 rounded-lg mt-3">Learn this set!</button></Link>
+       <Link to={`/vocablist/${this.props.match.params.id}/flashcards`} > <button className="bg-green-600 hover:bg-yellow-500 duration-150 text-white px-3 py-2 rounded-lg mt-5">Learn this set!</button></Link>
+      </div>
       </div>
     )
   }
