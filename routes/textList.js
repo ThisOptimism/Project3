@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const Text = require('../models/Text.model')
+const Text = require('../models/Text.model');
+const User = require("../models/User.model");
 
 //to create a text
 
@@ -134,6 +135,33 @@ router.get('/randomtext', (req, res, next) => {
         .catch(err => {
             res.status(500).json(err)
         })
+})
+
+router.post('/toggleFavorite/:textId', (req, res, next) => {
+    console.log(req.body);
+    
+    if(req.body.addOrRemove === 'add') {
+        User.findByIdAndUpdate(req.user._id, {$push: {
+            favoriteText: req.params.textId
+        }}, {new : true})        
+      .then(response => {
+        return res.status(200).json({
+          successMessage: 'Text added to favourites',
+        })
+        })
+    } else {
+        User.findByIdAndUpdate(req.user._id, {$pull: {
+            favoriteText: req.params.textId
+        }}, {new : true})
+        .then(response => {
+            console.log(req.user);
+            console.log({response});
+            
+        return res.status(200).json({
+            successMessage: 'Text removed from favourites',
+            })
+        })        
+    }
 })
 
 function calcReadability(text) {
