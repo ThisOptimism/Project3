@@ -39,11 +39,10 @@ export default class UpdateVocabList extends Component {
       words.push([natWords[i].value, tarWords[i].value])
     }
 
-    console.log('input values from form ' + name.value + nativeLang.value + targetLang.value + words)
     axios.put(`/api/vocabList/updateVocabList/${this.props.vocablist._id}`, {
       name: name.value,
-      nativeLang: targetLang.value || this.state.nativeLang,
-      targetLang: nativeLang.value || this.state.targetLang,
+      nativeLang: nativeLang.value || this.state.nativeLang,
+      targetLang: targetLang.value || this.state.targetLang,
       words: words,
     })
       .then(newList => {

@@ -13,7 +13,6 @@ export default class TextDiv extends Component {
         <h4 class="text-xl">{text.author}</h4>
         <h4 class="italic p-1">{text.genre.join('')}</h4>
         <p>{text.body.slice(0,300) + '...'}</p>
-
       </div>
     )
 
