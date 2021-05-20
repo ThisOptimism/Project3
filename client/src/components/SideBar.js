@@ -23,18 +23,19 @@ class SideBar extends React.Component {
   }
 
   updateDisplayedVocabLists = () => {
-    console.log('updating lists');
-    
     axios.get(`/api/vocabList/myVocabLists/${this.props.user._id}`)
     .then(response => {
-      response.data.map(list => {
-        const newListOption = ({ value: list._id, label: list.name });
-        this.setState(state => {
-          myVocabLists: state.myVocabLists.push(newListOption)
-        })
-        return newListOption;
-      })
+      console.log(response);
+      
+      const newListOptions = response.data.map(list => {
+         return({ value: list._id, label: list.name });
 
+      })
+      
+      this.setState({
+        myVocabLists: newListOptions
+      })
+      
     })
   }
 

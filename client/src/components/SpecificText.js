@@ -19,18 +19,19 @@ export default class SpecificText extends Component {
     inFavorites: '',
   }
   componentDidMount = () => {
+    this.getUser()
+    .then(user => {
+      if(user.data.favoriteText.includes(this.props.match.params.id)) {
+        this.setState({
+          inFavorites: true,
+        })      
+      } else {
+        this.setState({
+          inFavorites: false
+        })       
+      }
+    })
 
-    if(this.props.user.favoriteText.includes(this.props.match.params.id)) {
-      this.setState({
-        inFavorites: true,
-      })
-      
-    } else {
-      this.setState({
-        inFavorites: false
-      })
-      
-    }
 
     axios.get(`/api/textList/findText/${this.props.match.params.id}`)
       .then(text => {
@@ -48,6 +49,17 @@ export default class SpecificText extends Component {
       )
   }
   
+
+  getUser = () => {
+    return axios.get(`/api/auth/getuser/${this.props.user._id}`)
+      .then(user => {    
+        this.setState({
+          user: user.data
+        })
+        return user;
+      })
+  }
+
   makeTextClickable = (text) => {
     return text.split(' ')
       .map(word => {
