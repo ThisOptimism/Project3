@@ -7,8 +7,6 @@ export default class FlashCard extends Component {
     console.log('flipping');
     const card = document.querySelector('.flashcard')
     card.classList.contains('flashcard-turned') ? card.classList.remove('flashcard-turned') : card.classList.add('flashcard-turned')
-    // const vocabListObject = this.props.vocabListObject;
-    // this.state.langShowing === 0 ? this.setState({langShowing: 1}) : this.setState({langShowing: 0})
   }
 
 
