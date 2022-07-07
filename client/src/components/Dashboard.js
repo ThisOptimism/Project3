@@ -45,7 +45,7 @@ export default class Dashboard extends Component {
         <div>
           <h1 className=" font-bold text-3xl">Random Text:</h1>
           { this.state.randomText && <TextDiv text={ this.state.randomText } /> }
-          <h1 className="mt-10 font-bold text-3xl">Favorit Texts: </h1>
+          <h1 className="mt-10 font-bold text-3xl">Favourite Texts: </h1>
           <div className="grid grid-cols-2">
             { this.state.userFavorite && this.state.userFavorite.map(text => {
               return <TextDiv key={text._id} text={text} />
