@@ -1,5 +1,5 @@
 ##LingoFish
-This repo is forked from [here](https://github.com/ThisOptimism/Project3) where my team developed our final project for the ironhack bootcamp. The project, LingoFish, is a language learning platform, which allows users to upload, read and share texts in foreign languages and learn vocabulary by getting instant translations of words with a simple click.
+This repo is our final project for the ironhack bootcamp. The project, LingoFish, is a language learning platform, which allows users to upload, read and share texts in foreign languages and learn vocabulary by getting instant translations of words with a simple click.
 
 ####Environment Variables
 To start the project, you need to create a .env file with the following variables:
